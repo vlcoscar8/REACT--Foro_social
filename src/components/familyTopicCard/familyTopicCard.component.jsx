@@ -1,18 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faMessage } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const FamilyTopicCard = ({ family }) => {
     return (
         <article className="family">
-            <picture className="family__logo-container">
+            <Link
+                to={"/family/" + family.id}
+                className="family__logo-container"
+            >
                 <img
                     src={family.logo}
                     alt={family.title}
                     className="family__logo-container--logo"
                 />
-            </picture>
-            <figure className="family__info">
+            </Link>
+            <Link to={"/family/" + family.id} className="family__info">
                 <div className="family__info--text">
                     <h2 className="title">{family.title}</h2>
                     <div className="topics-container">
@@ -29,7 +33,7 @@ const FamilyTopicCard = ({ family }) => {
                     icon={faChevronRight}
                     className="family__info--icon"
                 />
-            </figure>
+            </Link>
         </article>
     );
 };
