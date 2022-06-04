@@ -1,0 +1,77 @@
+.family {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    height: 10rem;
+    gap: 2rem;
+
+    &__logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        border-radius: 1rem;
+        padding: 1rem;
+        box-sizing: border-box;
+        border: 1px solid orange;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        cursor: pointer;
+
+        &--logo {
+            height: 90%;
+            border-radius: 50%;
+        }
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+        height: 100%;
+        padding: 0 3rem;
+        border-radius: 1rem;
+        margin-right: 0;
+        border: 1px solid orange;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        cursor: pointer;
+
+        &--text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: start;
+            width: 50%;
+            height: 100%;
+            position: relative;
+
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .topics-container {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                position: absolute;
+                bottom: 0;
+
+                &__icon {
+                    font-size: 1.6rem;
+                    color: rgb(188, 188, 189);
+                }
+
+                &__counter {
+                    font-size: 1.6rem;
+                    color: rgb(155, 155, 155);
+                }
+            }
+        }
+
+        &--icon {
+            font-size: 4rem;
+            color: orangered;
+        }
+    }
+}
