@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 
 const FamilyTopicCard = ({ family }) => {
     return (
-        <article className="family">
+        <article className="family-card">
             <Link
                 to={`/family/${family.id}`}
-                className="family__logo-container"
+                className="family-card__logo-container"
             >
                 <img
                     src={family.logo}
                     alt={family.title}
-                    className="family__logo-container--logo"
+                    className="family-card__logo-container--logo"
                 />
             </Link>
-            <Link to={`/family/${family.id}`} className="family__info">
-                <div className="family__info--text">
+            <Link to={`/family/${family.id}`} className="family-card__info">
+                <div className="family-card__info--text">
                     <h2 className="title">{family.title}</h2>
                     <div className="topics-container">
                         <FontAwesomeIcon
@@ -31,7 +31,7 @@ const FamilyTopicCard = ({ family }) => {
                 </div>
                 <FontAwesomeIcon
                     icon={faChevronRight}
-                    className="family__info--icon"
+                    className="family-card__info--icon"
                 />
             </Link>
         </article>
