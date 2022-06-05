@@ -7,13 +7,14 @@
     height: 40rem;
     width: 100%;
     position: relative;
-    z-index: -1;
+
     box-sizing: border-box;
 
     &--img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        z-index: -1;
     }
 
     &--user {
@@ -30,14 +31,17 @@
         top: 6rem;
         border-radius: 3rem;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        cursor: pointer;
 
         .img {
             height: 100%;
+            cursor: pointer;
         }
 
         .username {
             font-size: 2rem;
             font-weight: 400;
+            cursor: pointer;
         }
     }
 }
@@ -45,7 +49,7 @@
 .topic__header-card {
     position: absolute;
     width: 90%;
-    height: 20rem;
+    height: 18rem;
     background-color: white;
     z-index: 2;
     top: 37rem;
@@ -54,6 +58,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 
     &--title {
         display: flex;
@@ -68,7 +73,8 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding-left: 5rem;
+        padding-left: 7rem;
+        margin-top: -2rem;
         gap: 2rem;
         width: 100%;
 
@@ -88,5 +94,13 @@
                 color: rgb(161, 161, 161);
             }
         }
+    }
+
+    &--buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 3rem;
+        width: 90%;
     }
 }

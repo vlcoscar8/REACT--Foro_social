@@ -35,8 +35,10 @@ const TopicHeader = ({ topic, user }) => {
                         <FontAwesomeIcon icon={faUserPlus} className="icon" />
                         <p className="counter">{topic.followers.length}</p>
                     </div>
-                    <BtnFollow page="topic" />
+                </div>
+                <div className="topic__header-card--buttons">
                     <BtnComment />
+                    <BtnFollow page="topic" />
                 </div>
             </figure>
         </>
