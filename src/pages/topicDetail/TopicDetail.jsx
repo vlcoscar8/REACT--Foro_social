@@ -9,7 +9,7 @@ const TopicDetail = () => {
     const { id } = useParams();
     const [topic, setTopic] = useState();
     const [user, setUser] = useState();
-    const [comments, setComments] = useState();
+    const [comments, setComments] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
