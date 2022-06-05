@@ -26,7 +26,7 @@ const FamilyTopicDetail = () => {
         <>
             {isLoaded ? (
                 <section className="family">
-                    <div className="family__header">
+                    <figure className="family__header">
                         <img
                             src={familyDetail.logo}
                             alt={familyDetail.title}
@@ -35,7 +35,7 @@ const FamilyTopicDetail = () => {
                         <h2 className="family__header--title">
                             {familyDetail.title}
                         </h2>
-                    </div>
+                    </figure>
                     <div className="family__topics">
                         {familyDetail.topics.map((topic) => (
                             <Link to={`/topic/${topic.id}`}>
