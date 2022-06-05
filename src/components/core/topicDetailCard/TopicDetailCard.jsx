@@ -28,7 +28,7 @@ const TopicDetailCard = ({ topic }) => {
     return (
         <>
             {isLoaded ? (
-                <Link to={`/topic${topic.id}`} className="topic-card">
+                <Link to={`/topic/${topic.id}`} className="topic-card">
                     <figure className="topic-card__header">
                         <div className="topic-card__header--user">
                             <img
