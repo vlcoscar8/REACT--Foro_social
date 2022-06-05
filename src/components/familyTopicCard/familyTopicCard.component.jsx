@@ -7,7 +7,7 @@ const FamilyTopicCard = ({ family }) => {
     return (
         <article className="family">
             <Link
-                to={"/family/" + family.id}
+                to={`/family/${family.id}`}
                 className="family__logo-container"
             >
                 <img
@@ -16,7 +16,7 @@ const FamilyTopicCard = ({ family }) => {
                     className="family__logo-container--logo"
                 />
             </Link>
-            <Link to={"/family/" + family.id} className="family__info">
+            <Link to={`/family/${family.id}`} className="family__info">
                 <div className="family__info--text">
                     <h2 className="title">{family.title}</h2>
                     <div className="topics-container">
