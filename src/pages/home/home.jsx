@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import FamilyTopicCard from "../../components/familyTopicCard/FamilyTopicCard";
+import FamilyTopicCard from "../../components/core/familyTopicCard/FamilyTopicCard";
 import { ForoContext } from "../../context/apiContext";
 
 const Home = ({ listenHomeClick }) => {

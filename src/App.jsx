@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ForoContextProvider } from "./context/apiContext";
 import Home from "./pages/home/Home";
-import Header from "./components/header/Header";
+import Header from "./components/core/header/Header";
 import FamilyTopicDetail from "./pages/familyTopicDetail/FamilyTopicDetail";
 import TopicDetail from "./pages/topicDetail/TopicDetail";
 

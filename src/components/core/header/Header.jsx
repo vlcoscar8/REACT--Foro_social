@@ -7,10 +7,13 @@ const Header = () => {
     return (
         <header className="header">
             <nav className="header__nav">
-                <FontAwesomeIcon
-                    icon={faPhoenixSquadron}
-                    className="header__nav--icon"
-                />
+                <Link to="/">
+                    <FontAwesomeIcon
+                        icon={faPhoenixSquadron}
+                        className="header__nav--icon"
+                    />
+                </Link>
+
                 <div className="header__nav--buttons">
                     <Link to="/">
                         <button>Home</button>

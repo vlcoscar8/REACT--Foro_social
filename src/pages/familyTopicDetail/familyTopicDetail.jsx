@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import TopicDetailCard from "../../components/topicDetailCard/TopicDetailCard";
+import { useParams } from "react-router-dom";
+import TopicDetailCard from "../../components/core/topicDetailCard/TopicDetailCard";
 
 const API_URL = "https://foro-api-oscar.herokuapp.com";
 
@@ -38,9 +38,7 @@ const FamilyTopicDetail = () => {
                     </figure>
                     <div className="family__topics">
                         {familyDetail.topics.map((topic) => (
-                            <Link to={`/topic/${topic.id}`}>
-                                <TopicDetailCard key={topic.id} topic={topic} />
-                            </Link>
+                            <TopicDetailCard key={topic.id} topic={topic} />
                         ))}
                     </div>
                 </section>
