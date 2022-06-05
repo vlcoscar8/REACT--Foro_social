@@ -1,7 +1,13 @@
 import React from "react";
 
-const BtnFollow = () => {
-    return <button className="follow-btn">Follow</button>;
+const BtnFollow = ({ page }) => {
+    return (
+        <button
+            className={page === "card" ? "follow-card-btn" : "follow-topic-btn"}
+        >
+            Follow
+        </button>
+    );
 };
 
 export default BtnFollow;

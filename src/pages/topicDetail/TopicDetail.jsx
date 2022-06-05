@@ -30,7 +30,7 @@ const TopicDetail = () => {
     return (
         <>
             {isLoaded ? (
-                <section>
+                <section className="topic">
                     <TopicHeader topic={topic} user={user} />
                     {comments.map((comment) => (
                         <Comment comment={comment} key={comment.id} />

@@ -60,7 +60,7 @@ const TopicDetailCard = ({ topic }) => {
                                     {topic.followers.length}
                                 </p>
                             </div>
-                            <BtnFollow />
+                            <BtnFollow page="card" />
                         </div>
                     </figure>
                     <picture className="topic-card__background">
