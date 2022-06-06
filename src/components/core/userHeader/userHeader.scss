@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: start;
     width: 100%;
+    margin-bottom: 13rem;
 
     &__background {
         position: absolute;
@@ -102,7 +103,7 @@
             cursor: pointer;
 
             &:hover {
-                color: rgb(37, 34, 32);
+                color: rgb(255, 102, 0);
                 text-shadow: 0 0 0.7px rgb(0, 0, 0);
             }
 
@@ -111,4 +112,9 @@
             }
         }
     }
+}
+
+.active {
+    color: rgb(255, 102, 0);
+    text-shadow: 0 0 0.7px rgb(0, 0, 0);
 }

@@ -1,0 +1,49 @@
+.user-topic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 40rem;
+    height: 8rem;
+    background-color: white;
+    border: 1px solid orangered;
+    border-radius: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem 2rem;
+    position: relative;
+    cursor: pointer;
+
+    &__title {
+        width: 100%;
+        text-align: center;
+        font-size: 2.3rem;
+        position: absolute;
+        top: -0.4rem;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: -0.4rem;
+
+        &--icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 10rem;
+            gap: 2rem;
+
+            .icon {
+                font-size: 2rem;
+                color: rgb(111, 111, 111);
+            }
+
+            .counter {
+                font-size: 2rem;
+                color: rgb(111, 111, 111);
+            }
+        }
+    }
+}

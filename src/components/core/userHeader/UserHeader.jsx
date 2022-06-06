@@ -1,8 +1,24 @@
 import { faGem } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useCallback, useState } from "react";
 
-const UserHeader = ({ user }) => {
+const UserHeader = ({ user, showTopics }) => {
+    const [whoClicked, setWhoClicked] = useState("");
+
+    const memoizedValue = useCallback(whoClicked, [whoClicked]);
+
+    const clickOnTopics = () => {
+        showTopics(user.topics);
+
+        memoizedValue === "topic" ? setWhoClicked("") : setWhoClicked("topic");
+    };
+
+    const clickOnFollow = () => {
+        showTopics(user.topicsFollowing);
+        memoizedValue === "follow"
+            ? setWhoClicked("")
+            : setWhoClicked("follow");
+    };
     return (
         <figure className="user-header">
             <img
@@ -26,11 +42,25 @@ const UserHeader = ({ user }) => {
                 </div>
             </div>
             <figure className="user-header__nav">
-                <div className="user-header__nav--icon">
+                <div
+                    className={
+                        whoClicked === "topic"
+                            ? "user-header__nav--icon  active"
+                            : "user-header__nav--icon"
+                    }
+                    onClick={clickOnTopics}
+                >
                     <p>Topics created</p>
                     <p className="counter">{user.topics.length}</p>
                 </div>
-                <div className="user-header__nav--icon">
+                <div
+                    className={
+                        whoClicked === "follow"
+                            ? "user-header__nav--icon  active"
+                            : "user-header__nav--icon"
+                    }
+                    onClick={clickOnFollow}
+                >
                     <p>Topics followed</p>
                     <p className="counter">{user.topicsFollowing.length}</p>
                 </div>
