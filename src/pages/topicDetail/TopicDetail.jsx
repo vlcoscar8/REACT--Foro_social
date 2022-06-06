@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comment from "../../components/core/comment/Comment";
+import Reply from "../../components/core/reply/Reply";
 import TopicHeader from "../../components/core/topicHeader/TopicHeader";
-
-const API_URL = "https://foro-api-oscar.herokuapp.com";
+import { environment } from "../../environment/environment";
 
 const TopicDetail = () => {
     const { id } = useParams();
@@ -14,7 +14,7 @@ const TopicDetail = () => {
 
     useEffect(() => {
         try {
-            fetch(`${API_URL}/topic/${id}`)
+            fetch(`${environment.API_URL}/topic/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setTopic(data[0]);
@@ -32,9 +32,18 @@ const TopicDetail = () => {
             {isLoaded ? (
                 <section className="topic">
                     <TopicHeader topic={topic} user={user} />
-                    {comments.map((comment) => (
-                        <Comment comment={comment} key={comment.id} />
-                    ))}
+                    {comments.map((comment) => {
+                        return (
+                            <>
+                                <Comment comment={comment} key={comment.id} />
+                                {comment.replies.length > 0
+                                    ? comment.replies.map((reply) => (
+                                          <Reply key={reply} />
+                                      ))
+                                    : ""}
+                            </>
+                        );
+                    })}
                 </section>
             ) : (
                 <h1>Is loading...</h1>

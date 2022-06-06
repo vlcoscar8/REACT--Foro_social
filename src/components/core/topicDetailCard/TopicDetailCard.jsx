@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import BtnFollow from "../../shared/button-follow/BtnFollow";
-
-const API_URL = "https://foro-api-oscar.herokuapp.com";
+import { environment } from "../../../environment/environment";
 
 const TopicDetailCard = ({ topic }) => {
     const [user, setUser] = useState();
@@ -14,7 +13,7 @@ const TopicDetailCard = ({ topic }) => {
         const userId = topic.user[0];
 
         try {
-            fetch(`${API_URL}/user/${userId}`)
+            fetch(`${environment.API_URL}/user/${userId}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setUser(data);

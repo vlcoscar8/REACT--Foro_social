@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TopicDetailCard from "../../components/core/topicDetailCard/TopicDetailCard";
-
-const API_URL = "https://foro-api-oscar.herokuapp.com";
+import { environment } from "../../environment/environment";
 
 const FamilyTopicDetail = () => {
     const [familyDetail, setFamilyDetail] = useState();
@@ -11,7 +10,7 @@ const FamilyTopicDetail = () => {
 
     useEffect(() => {
         try {
-            fetch(`${API_URL}/topic/family/${id}`)
+            fetch(`${environment.API_URLAPI_URL}/topic/family/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setFamilyDetail(data[0]);

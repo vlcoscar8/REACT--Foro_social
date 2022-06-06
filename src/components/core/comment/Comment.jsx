@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ButtonRepply from "../../shared/button-repply/ButtonRepply";
-
-const API_URL = "https://foro-api-oscar.herokuapp.com";
+import { environment } from "../../../environment/environment";
 
 const Comment = ({ comment }) => {
     const [user, setUser] = useState();
@@ -9,7 +8,7 @@ const Comment = ({ comment }) => {
 
     useEffect(() => {
         try {
-            fetch(`${API_URL}/user/${comment.user}`)
+            fetch(`${environment.API_URL}/user/${comment.user}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setUser(data);
@@ -21,7 +20,6 @@ const Comment = ({ comment }) => {
     }, [comment]);
 
     const dataArray = comment.data.split(" ");
-    // const now = Date.now();
 
     const data =
         dataArray[0] +
@@ -31,6 +29,7 @@ const Comment = ({ comment }) => {
         dataArray[2] +
         " " +
         dataArray[3];
+
     return (
         <>
             {isLoaded ? (
