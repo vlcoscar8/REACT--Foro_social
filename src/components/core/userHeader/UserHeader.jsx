@@ -2,7 +2,7 @@ import { faGem } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useState } from "react";
 
-const UserHeader = ({ user, showTopics }) => {
+const UserHeader = ({ user, showTopics, showModal }) => {
     const [whoClicked, setWhoClicked] = useState("");
 
     const memoizedValue = useCallback(whoClicked, [whoClicked]);
@@ -19,6 +19,10 @@ const UserHeader = ({ user, showTopics }) => {
             ? setWhoClicked("")
             : setWhoClicked("follow");
     };
+
+    const handleShowModal = () => {
+        showModal(true);
+    };
     return (
         <figure className="user-header">
             <img
@@ -27,7 +31,12 @@ const UserHeader = ({ user, showTopics }) => {
                 className="user-header__background"
             />
             <div className="user-header__user">
-                <button className="user-header__user--edit">Edit</button>
+                <button
+                    className="user-header__user--edit"
+                    onClick={handleShowModal}
+                >
+                    Edit
+                </button>
                 <div className="user-header__user--avatar">
                     <img
                         src={user.avatarProfile}

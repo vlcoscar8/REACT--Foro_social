@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ModalAvatar from "../../components/core/modalAvatar/ModalAvatar";
 import UserHeader from "../../components/core/userHeader/UserHeader";
 import UserTopic from "../../components/core/userTopic/UserTopic";
 import { environment } from "../../environment/environment";
@@ -7,32 +8,39 @@ import { environment } from "../../environment/environment";
 const UserProfile = () => {
     const { username } = useParams();
     const [user, setUser] = useState();
-    const [isLoaded, setIsLoaded] = useState(false);
     const [topics, setTopics] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         fetch(`${environment.API_URL}/user/name/${username}`)
             .then((res) => res.json())
             .then((data) => {
                 setUser(data);
-                setIsLoaded(true);
             });
     }, [username]);
 
-    const memoizedValue = useCallback(topics, [topics]);
+    const memoizedTopicsValue = useCallback(topics, [topics]);
 
     const showTopics = (info) => {
         setTopics(info);
 
-        memoizedValue === info ? setShowInfo(false) : setShowInfo(true);
+        memoizedTopicsValue === info ? setShowInfo(false) : setShowInfo(true);
+    };
+
+    const showModal = (value) => {
+        setModal(value);
     };
 
     return (
         <>
-            {isLoaded ? (
+            {user !== undefined ? (
                 <section className="user-profile">
-                    <UserHeader user={user} showTopics={showTopics} />
+                    <UserHeader
+                        user={user}
+                        showTopics={showTopics}
+                        showModal={showModal}
+                    />
                     {showInfo ? (
                         topics.map((topic) => (
                             <UserTopic topic={topic} key={topic} />
@@ -40,6 +48,11 @@ const UserProfile = () => {
                     ) : (
                         <h2>Interesting...</h2>
                     )}
+                    <ModalAvatar
+                        user={user}
+                        showModal={showModal}
+                        modal={modal}
+                    />
                 </section>
             ) : (
                 <h1>Is loading</h1>
