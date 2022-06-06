@@ -1,0 +1,103 @@
+.user-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+
+    &__background {
+        position: absolute;
+        top: -8rem;
+        width: 100vw;
+        height: 30rem;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    &__user {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 3rem;
+
+        &--avatar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 15rem;
+            padding: 1rem 0;
+            background-color: white;
+            border-radius: 4rem;
+            margin-top: -1rem;
+            gap: 0;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+            .img {
+                width: 70%;
+            }
+
+            .username {
+                font-size: 2rem;
+                font-weight: 600;
+                line-height: 2rem;
+            }
+        }
+
+        &--edit {
+            padding: 1rem 4rem;
+            background-color: rgba(255, 255, 255, 0.128);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border: 2px solid white;
+            border-radius: 2rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        &--coins {
+            padding: 0.2rem 2rem;
+            background-color: rgba(255, 255, 255, 0.128);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border: 2px solid white;
+            border-radius: 2rem;
+            color: white;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+
+    &__nav {
+        position: absolute;
+        top: 18rem;
+        width: 80%;
+        height: 8rem;
+        border-radius: 2rem;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+        box-sizing: border-box;
+
+        &--icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 5rem;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            color: rgb(61, 61, 61);
+            text-align: center;
+            cursor: pointer;
+
+            .counter {
+                margin-top: -2rem;
+            }
+        }
+    }
+}

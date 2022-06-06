@@ -5,6 +5,7 @@
 @import "./pages/home/home.scss";
 @import "./pages/familyTopicDetail/familyTopicDetail.scss";
 @import "./pages/topicDetail/topicDetail.scss";
+@import "./pages/userProfile/userProfile.scss";
 
 // Components Core
 @import "./components/core/header/header.scss";
@@ -12,6 +13,7 @@
 @import "./components/core/topicDetailCard/topicDetailCard.scss";
 @import "./components/core/topicHeader/topicHeader.scss";
 @import "./components/core/comment/comment.scss";
+@import "./components/core/userHeader/userHeader.scss";
 
 // Components Share
 @import "./components/shared/button-follow/btnFollow.scss";

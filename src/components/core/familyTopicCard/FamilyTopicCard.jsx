@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -21,7 +21,7 @@ const FamilyTopicCard = ({ family }) => {
                     <h2 className="title">{family.title}</h2>
                     <div className="topics-container">
                         <FontAwesomeIcon
-                            icon={faMessage}
+                            icon={faBookOpen}
                             className="topics-container__icon"
                         />
                         <p className="topics-container__counter">
