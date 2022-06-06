@@ -8,6 +8,7 @@
     border-radius: 3rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border: 1px solid rgb(255, 170, 66);
+    background-color: white;
 
     &__user {
         display: flex;
@@ -52,6 +53,90 @@
 
         &--text {
             font-size: 2rem;
+        }
+    }
+}
+
+.reply {
+    width: 75%;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    border-radius: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 1px solid rgb(255, 170, 66);
+    position: relative;
+    background-color: white;
+
+    &::before {
+        content: "";
+        width: 2px;
+        height: 20rem;
+        background-color: red;
+        position: absolute;
+        top: -16rem;
+        left: -2rem;
+        z-index: -2;
+    }
+
+    &::after {
+        content: "";
+        width: 5rem;
+        height: 2px;
+        background-color: red;
+        position: absolute;
+        top: 4rem;
+        left: -2rem;
+        z-index: -2;
+    }
+
+    &__user {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2rem;
+        width: 90%;
+        height: 5rem;
+        padding: 1rem 3rem;
+
+        &--img {
+            height: 100%;
+        }
+
+        &--info {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin-bottom: 1.6rem;
+
+            .username {
+                font-size: 1.8rem;
+            }
+
+            .data {
+                position: absolute;
+                top: 2.5rem;
+                font-size: 1.3rem;
+                color: rgb(145, 145, 145);
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0 2rem 1rem 2rem;
+
+        &--text {
+            font-size: 1.7rem;
         }
     }
 }

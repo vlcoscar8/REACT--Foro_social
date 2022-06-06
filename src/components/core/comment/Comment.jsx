@@ -1,55 +1,92 @@
 import React, { useEffect, useState } from "react";
 import ButtonRepply from "../../shared/button-repply/ButtonRepply";
 import { environment } from "../../../environment/environment";
+import { Link } from "react-router-dom";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, isComment }) => {
     const [user, setUser] = useState();
+    const [reply, setReply] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        try {
-            fetch(`${environment.API_URL}/user/${comment.user}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setUser(data);
-                    setIsLoaded(true);
-                });
-        } catch (error) {
-            console.log(error);
+        if (isComment) {
+            try {
+                fetch(`${environment.API_URL}/user/${comment.user}`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setUser(data);
+                        setIsLoaded(true);
+                    });
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            try {
+                fetch(`${environment.API_URL}/comment/${comment}`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setReply(data);
+
+                        fetch(`${environment.API_URL}/user/${data.user[0]}`)
+                            .then((res) => res.json())
+                            .then((data) => {
+                                setUser(data);
+                                setIsLoaded(true);
+                            });
+                    });
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }, [comment]);
-
-    const dataArray = comment.data.split(" ");
-
-    const data =
-        dataArray[0] +
-        " " +
-        dataArray[1] +
-        " " +
-        dataArray[2] +
-        " " +
-        dataArray[3];
+    }, []);
 
     return (
         <>
             {isLoaded ? (
-                <figure className="comment">
-                    <div className="comment__user">
+                <figure className={isComment ? "comment" : "reply"}>
+                    <Link
+                        to={`/user/${user.username}`}
+                        className={isComment ? "comment__user" : "reply__user"}
+                    >
                         <img
                             src={user.avatarProfile}
                             alt={"Avatar image from" + user.username}
-                            className="comment__user--img"
+                            className={
+                                isComment
+                                    ? "comment__user--img"
+                                    : "reply__user--img"
+                            }
                         />
-                        <div className="comment__user--info">
+                        <div
+                            className={
+                                isComment
+                                    ? "comment__user--info"
+                                    : "reply__user--info"
+                            }
+                        >
                             <h2 className="username">{user.username}</h2>
-                            <p className="data">{data}</p>
+                            <p className="data">
+                                {isComment
+                                    ? comment.data.split("G")[0]
+                                    : reply.data.split("G")[0]}
+                            </p>
                         </div>
-                    </div>
-                    <div className="comment__content">
-                        <p className="comment__content--text">
-                            {comment.content}
+                    </Link>
+                    <div
+                        className={
+                            isComment ? "comment__content" : "reply__content"
+                        }
+                    >
+                        <p
+                            className={
+                                isComment
+                                    ? "comment__content--text"
+                                    : "reply__content--text"
+                            }
+                        >
+                            {isComment ? comment.content : reply.content}
                         </p>
-                        <ButtonRepply />
+                        {isComment ? <ButtonRepply /> : ""}
                     </div>
                 </figure>
             ) : (

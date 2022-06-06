@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import Header from "./components/core/header/Header";
 import FamilyTopicDetail from "./pages/familyTopicDetail/FamilyTopicDetail";
 import TopicDetail from "./pages/topicDetail/TopicDetail";
+import UserProfile from "./pages/userProfile/UserProfile";
 
 function App() {
     return (
@@ -21,6 +22,10 @@ function App() {
                             <Route
                                 path="/topic/:id"
                                 element={<TopicDetail />}
+                            />
+                            <Route
+                                path="/user/:username"
+                                element={<UserProfile />}
                             />
                         </Routes>
                     </main>

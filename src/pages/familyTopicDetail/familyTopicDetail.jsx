@@ -10,7 +10,7 @@ const FamilyTopicDetail = () => {
 
     useEffect(() => {
         try {
-            fetch(`${environment.API_URLAPI_URL}/topic/family/${id}`)
+            fetch(`${environment.API_URL}/topic/family/${id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setFamilyDetail(data[0]);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comment from "../../components/core/comment/Comment";
-import Reply from "../../components/core/reply/Reply";
 import TopicHeader from "../../components/core/topicHeader/TopicHeader";
 import { environment } from "../../environment/environment";
 
@@ -35,11 +34,21 @@ const TopicDetail = () => {
                     {comments.map((comment) => {
                         return (
                             <>
-                                <Comment comment={comment} key={comment.id} />
+                                <Comment
+                                    comment={comment}
+                                    key={comment.id}
+                                    isComment={true}
+                                />
                                 {comment.replies.length > 0
-                                    ? comment.replies.map((reply) => (
-                                          <Reply key={reply} />
-                                      ))
+                                    ? comment.replies.map((reply) => {
+                                          return (
+                                              <Comment
+                                                  comment={reply}
+                                                  key={reply}
+                                                  isComment={false}
+                                              />
+                                          );
+                                      })
                                     : ""}
                             </>
                         );

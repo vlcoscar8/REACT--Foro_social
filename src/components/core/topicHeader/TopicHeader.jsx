@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import BtnFollow from "../../shared/button-follow/BtnFollow";
 import BtnComment from "../../shared/button-comment/BtnComment";
+import { Link } from "react-router-dom";
 
 const TopicHeader = ({ topic, user }) => {
     return (
@@ -13,14 +14,17 @@ const TopicHeader = ({ topic, user }) => {
                     alt={topic.title + "Wallpaper"}
                     className="topic__header--img"
                 />
-                <div className="topic__header--user">
+                <Link
+                    to={`/user/${user.username}`}
+                    className="topic__header--user"
+                >
                     <img
                         src={user.avatarProfile}
                         alt={user.username + "avatar image"}
                         className="img"
                     />
                     <h3 className="username">{user.username}</h3>
-                </div>
+                </Link>
             </picture>
             <figure className="topic__header-card">
                 <div className="topic__header-card--title">

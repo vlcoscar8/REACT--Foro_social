@@ -7,7 +7,7 @@ export const ForoContextProvider = ({ children }) => {
     const [familyTopics, setFamilyTopics] = useState([]);
 
     useEffect(() => {
-        fetch(`${environment.API_URL}topic/family`)
+        fetch(`${environment.API_URL}/topic/family`)
             .then((res) => res.json())
             .then((data) => setFamilyTopics(data));
     }, []);
