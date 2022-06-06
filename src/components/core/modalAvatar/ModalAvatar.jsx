@@ -1,6 +1,7 @@
 import { faGem, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import AvatarList from "../avatarList/AvatarList";
 
 const ModalAvatar = ({ user, showModal, modal }) => {
     const handleShowModal = () => {
@@ -26,6 +27,7 @@ const ModalAvatar = ({ user, showModal, modal }) => {
                         <p>{user.coins}</p>
                     </div>
                 </div>
+                <AvatarList user={user} />
             </section>
             <div
                 className={

@@ -23,10 +23,11 @@
         justify-content: flex-start;
         gap: 1rem;
         width: 30%;
+        max-width: 20rem;
         height: 5rem;
         background-color: white;
         padding: 1rem 2rem;
-        margin-left: 2rem;
+        margin-left: 5%;
         top: 7rem;
         border-radius: 3rem;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -48,6 +49,7 @@
 .topic__header-card {
     position: absolute;
     width: 90%;
+    max-width: 70rem;
     height: 18rem;
     background-color: white;
     z-index: 2;
