@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import ButtonRepply from "../../shared/button-repply/ButtonRepply";
 import { environment } from "../../../environment/environment";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMessage } from "@fortawesome/free-solid-svg-icons";
 
 const Comment = ({ comment, isComment }) => {
     const [user, setUser] = useState();
@@ -87,6 +89,19 @@ const Comment = ({ comment, isComment }) => {
                             {isComment ? comment.content : reply.content}
                         </p>
                         {isComment ? <ButtonRepply /> : ""}
+                        {isComment ? (
+                            <div className="comment__content--replies">
+                                <FontAwesomeIcon
+                                    icon={faMessage}
+                                    className="icon"
+                                />
+                                <p className="counter">
+                                    {comment.replies.length}
+                                </p>
+                            </div>
+                        ) : (
+                            ""
+                        )}
                     </div>
                 </figure>
             ) : (
