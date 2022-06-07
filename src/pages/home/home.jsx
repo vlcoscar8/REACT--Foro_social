@@ -1,20 +1,32 @@
-import React, { useContext } from "react";
-import FamilyTopicCard from "../../components/core/familyTopicCard/FamilyTopicCard";
-import { ForoContext } from "../../context/apiContext";
+import React, { useEffect, useState } from "react";
+import FamilyTopicCard from "./components/familyTopicCard/FamilyTopicCard";
+import { environment } from "../../environment/environment";
 
 const Home = ({ listenHomeClick }) => {
-    const familyTopicsList = useContext(ForoContext);
+    const [familyTopics, setFamilyTopics] = useState([]);
+
+    useEffect(() => {
+        fetch(`${environment.API_URL}/topic/family`)
+            .then((res) => res.json())
+            .then((data) => setFamilyTopics(data));
+    }, []);
 
     return (
-        <section className="home">
-            {familyTopicsList.map((family) => (
-                <FamilyTopicCard
-                    family={family}
-                    key={family.id}
-                    listenHomeClick={listenHomeClick}
-                />
-            ))}
-        </section>
+        <>
+            {familyTopics ? (
+                <section className="home">
+                    {familyTopics.map((family) => (
+                        <FamilyTopicCard
+                            family={family}
+                            key={family.id}
+                            listenHomeClick={listenHomeClick}
+                        />
+                    ))}
+                </section>
+            ) : (
+                <h1>Loading...</h1>
+            )}
+        </>
     );
 };
 

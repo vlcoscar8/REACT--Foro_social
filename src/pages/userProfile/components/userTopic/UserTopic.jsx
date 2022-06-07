@@ -2,7 +2,7 @@ import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { environment } from "../../../environment/environment";
+import { environment } from "../../../../environment/environment";
 
 const UserTopic = ({ topic }) => {
     const [topicData, setTopicData] = useState();

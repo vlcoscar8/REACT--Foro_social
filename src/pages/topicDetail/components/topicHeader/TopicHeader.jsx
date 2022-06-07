@@ -1,8 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import BtnFollow from "../../shared/button-follow/BtnFollow";
-import BtnComment from "../../shared/button-comment/BtnComment";
+import BtnFollow from "../../../../components/shared/button-follow/BtnFollow";
+import BtnComment from "../../../../components/shared/button-comment/BtnComment";
 import { Link } from "react-router-dom";
 
 const TopicHeader = ({ topic, user }) => {

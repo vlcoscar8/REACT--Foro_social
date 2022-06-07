@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ButtonRepply from "../../shared/button-repply/ButtonRepply";
-import { environment } from "../../../environment/environment";
+import ButtonRepply from "../../../../components/shared/button-repply/ButtonRepply";
+import { environment } from "../../../../environment/environment";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";

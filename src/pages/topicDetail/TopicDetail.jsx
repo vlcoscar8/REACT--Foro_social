@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Comment from "../../components/core/comment/Comment";
-import TopicHeader from "../../components/core/topicHeader/TopicHeader";
 import { environment } from "../../environment/environment";
+import Comment from "./components/comment/Comment";
+import TopicHeader from "./components/topicHeader/TopicHeader";
 
 const TopicDetail = () => {
     const { id } = useParams();

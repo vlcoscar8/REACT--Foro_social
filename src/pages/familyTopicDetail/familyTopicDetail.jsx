@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import TopicDetailCard from "../../components/core/topicDetailCard/TopicDetailCard";
 import { environment } from "../../environment/environment";
+import TopicDetailCard from "./components/topicDetailCard/TopicDetailCard";
 
 const FamilyTopicDetail = () => {
     const [familyDetail, setFamilyDetail] = useState();

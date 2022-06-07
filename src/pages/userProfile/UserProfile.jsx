@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ModalAvatar from "../../components/core/modalAvatar/ModalAvatar";
-import UserHeader from "../../components/core/userHeader/UserHeader";
-import UserTopic from "../../components/core/userTopic/UserTopic";
+import ModalAvatar from "./components/modalAvatar/ModalAvatar";
+import UserHeader from "./components/userHeader/UserHeader";
+import UserTopic from "./components/userTopic/UserTopic";
 import { environment } from "../../environment/environment";
 
 const UserProfile = () => {
