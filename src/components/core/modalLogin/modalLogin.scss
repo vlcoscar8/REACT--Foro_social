@@ -1,4 +1,4 @@
-.modal-login {
+.modal-user {
     background-color: rgb(255, 255, 255);
     position: fixed;
     top: 10rem;
@@ -15,7 +15,7 @@
     justify-content: flex-start;
     gap: 3rem;
     transition: all 0.4s ease-in;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(242, 242, 242);
     padding: 7rem 0 0 0;
     box-sizing: border-box;
 
@@ -59,13 +59,34 @@
         border-radius: 4rem;
         background-color: orangered;
         color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: rgb(255, 99, 42);
+            transition: all 0.2s ease;
+        }
     }
 
     .error {
         font-size: 2rem;
         color: orangered;
         position: absolute;
+        top: 2rem;
+    }
+
+    .register {
+        font-size: 1.7rem;
+        color: rgb(255, 47, 0);
+        position: absolute;
         bottom: 2rem;
+        left: 6rem;
+        cursor: pointer;
+
+        &:hover {
+            color: rgb(255, 122, 74);
+            transition: all 0.2s ease;
+        }
     }
 }
 

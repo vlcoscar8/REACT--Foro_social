@@ -12,7 +12,6 @@ export const ForoContextProvider = ({ children }) => {
     const [userData, setUserData] = useState(INITIAL_STATE);
 
     const loginUser = (body) => {
-        console.log("login done");
         try {
             fetch(`${environment.API_URL}/user/login`, {
                 method: "POST",
@@ -39,7 +38,6 @@ export const ForoContextProvider = ({ children }) => {
     };
 
     const logout = () => {
-        console.log("logout done");
         try {
             fetch(`${environment.API_URL}/user/logout`, {
                 method: "POST",
