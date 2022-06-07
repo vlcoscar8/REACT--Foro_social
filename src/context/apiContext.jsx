@@ -11,15 +11,20 @@ const INITIAL_STATE = {
 export const ForoContextProvider = ({ children }) => {
     const [userData, setUserData] = useState(INITIAL_STATE);
 
-    const loginUser = (body) => {
+    const fetchUser = (body) => {
         try {
-            fetch(`${environment.API_URL}/user/login`, {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(body),
-            })
+            fetch(
+                `${environment.API_URL}/user/${
+                    body.username ? "register" : "login"
+                }`,
+                {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(body),
+                }
+            )
                 .then((res) => res.json())
                 .then((data) => {
                     if (data === "The email or password is incorrect") {
@@ -30,7 +35,9 @@ export const ForoContextProvider = ({ children }) => {
                         return;
                     }
 
-                    setUserData(setToLocalStorage(data));
+                    if (!body.username) {
+                        setUserData(setToLocalStorage(data));
+                    }
                 });
         } catch (error) {
             console.log(error);
@@ -68,7 +75,7 @@ export const ForoContextProvider = ({ children }) => {
     };
 
     return (
-        <ForoContext.Provider value={{ loginUser, logout, userData }}>
+        <ForoContext.Provider value={{ fetchUser, logout, userData }}>
             {children}
         </ForoContext.Provider>
     );

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ForoContext } from "../../../context/apiContext";
 
-const LogoutModalSide = ({ handleShowModal }) => {
+const LogoutModalSide = ({ handleShowModal, showRegister }) => {
     const { logout, userData } = useContext(ForoContext);
     // Logout button sending to the context
     const handleLogoutBtn = () => {
