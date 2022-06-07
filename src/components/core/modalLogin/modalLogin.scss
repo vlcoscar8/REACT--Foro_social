@@ -3,8 +3,7 @@
     position: fixed;
     top: 10rem;
     width: 65%;
-    max-width: 80rem;
-    height: 40rem;
+    max-width: 70rem;
     max-height: 100%;
     z-index: 1010;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
@@ -14,7 +13,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    gap: 3rem;
     transition: all 0.4s ease-in;
+    background-color: rgb(236, 236, 236);
+    padding: 7rem 0 0 0;
+    box-sizing: border-box;
 
     &__overlay {
         z-index: 1000;
@@ -28,6 +31,41 @@
         opacity: 0.9;
         opacity: 1;
         transition: all 0.4s ease-in;
+    }
+
+    .btn__close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        .icon {
+            font-size: 3rem;
+
+            &:hover {
+                transform: scale(1.1);
+                color: rgb(145, 5, 5);
+                transition: all 0.2s ease;
+            }
+        }
+    }
+
+    .btn-login {
+        padding: 2rem 12rem;
+        font-size: 2.4rem;
+        border: none;
+        border-radius: 4rem;
+        background-color: orangered;
+        color: white;
+    }
+
+    .error {
+        font-size: 2rem;
+        color: orangered;
+        position: absolute;
+        bottom: 2rem;
     }
 }
 
@@ -48,7 +86,7 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    gap: 3rem;
 
     label {
         width: 100%;
@@ -57,6 +95,16 @@ form {
         flex-direction: column;
         align-items: center;
         font-size: 2rem;
+        border-radius: 2rem;
+        position: relative;
+        background-color: rgb(255, 255, 255);
+
+        p {
+            align-self: flex-start;
+            font-size: 2rem;
+            font-weight: 200;
+            color: black;
+        }
 
         input {
             width: 80%;
@@ -64,7 +112,19 @@ form {
             border-radius: 2rem;
             font-size: 2rem;
             padding: 0 3rem;
-            border: 1px solid black;
+            border: none;
+            display: flex;
+            align-items: center;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .icon {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
         }
     }
 }

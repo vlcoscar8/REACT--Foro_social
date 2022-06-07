@@ -1,3 +1,5 @@
+import { faEnvelope, faLock, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { ForoContext } from "../../../context/apiContext";
 
@@ -24,7 +26,7 @@ const ModalLogin = ({ modalActive, showModal }) => {
             setSubmit(false);
             setTimeout(() => {
                 setShowError(false);
-            }, 2000);
+            }, 4000);
         }
     }, [userData]);
 
@@ -40,7 +42,6 @@ const ModalLogin = ({ modalActive, showModal }) => {
         loginUser(form);
         setForm(INITIAL_STATE);
         setSubmit(true);
-        console.log("submit", 1);
     };
 
     // Logout button sending to the context
@@ -61,7 +62,9 @@ const ModalLogin = ({ modalActive, showModal }) => {
                     modalActive ? "modal-login" : "modal-login no-active"
                 }
             >
-                <button onClick={handleShowModal}>Close</button>
+                <button onClick={handleShowModal} className="btn__close">
+                    <FontAwesomeIcon icon={faXmark} className="icon" />
+                </button>
                 <form
                     onSubmit={submitForm}
                     className={
@@ -71,13 +74,15 @@ const ModalLogin = ({ modalActive, showModal }) => {
                     }
                 >
                     <label>
-                        <p>Email</p>
+                        <p>Email Adress</p>
                         <input
                             type="text"
                             name="email"
                             value={form.email}
                             onChange={handleChangeForm}
+                            placeholder="example@email.com"
                         />
+                        <FontAwesomeIcon icon={faEnvelope} className="icon" />
                     </label>
                     <label>
                         <p>Password</p>
@@ -86,10 +91,21 @@ const ModalLogin = ({ modalActive, showModal }) => {
                             name="password"
                             value={form.password}
                             onChange={handleChangeForm}
+                            placeholder="*********"
                         />
+                        <FontAwesomeIcon icon={faLock} className="icon" />
                     </label>
-                    <button type="submit">Log in</button>
-                    {showError ? <p>Email or password not correct</p> : ""}
+
+                    <button type="submit" className="btn-login">
+                        Log in
+                    </button>
+                    {showError ? (
+                        <p className="error">
+                            The Email or password is incorrect
+                        </p>
+                    ) : (
+                        ""
+                    )}
                 </form>
                 <div
                     className={
