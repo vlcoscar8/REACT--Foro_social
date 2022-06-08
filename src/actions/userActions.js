@@ -18,15 +18,15 @@ const actionGetUserNok = () => ({
 });
 
 export default function getUserDetail(userController) {
-    return async (dispach) => {
-        dispach(actionGetUser());
+    return async (dispatch) => {
+        dispatch(actionGetUser());
         try {
             const userDetail = await serviceGetUserDetail(userController);
 
-            dispach(actionGetUserDetailOk(userDetail));
+            dispatch(actionGetUserDetailOk(userDetail));
         } catch (error) {
             console.log(error);
-            dispach(actionGetUserNok());
+            dispatch(actionGetUserNok());
         }
     };
 }

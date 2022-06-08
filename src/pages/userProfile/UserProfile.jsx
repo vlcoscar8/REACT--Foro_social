@@ -4,6 +4,7 @@ import ModalAvatar from "./components/modalAvatar/ModalAvatar";
 import UserHeader from "./components/userHeader/UserHeader";
 import UserTopic from "./components/userTopic/UserTopic";
 import useUserDetail from "../../customHooks/useUserDetail";
+import Loading from "../../components/shared/loading/Loading";
 
 const UserProfile = () => {
     const { username } = useParams();
@@ -15,7 +16,7 @@ const UserProfile = () => {
         type: "name",
         payload: username,
     };
-    const { userDetail } = useUserDetail(userController);
+    const { userDetail, loading } = useUserDetail(userController);
 
     const memoizedTopicsValue = useCallback(topics, [topics]);
 
@@ -31,7 +32,7 @@ const UserProfile = () => {
 
     return (
         <>
-            {userDetail.length !== 0 ? (
+            {!loading && userDetail.length !== 0 ? (
                 <section className="user-profile">
                     <UserHeader
                         userDetail={userDetail}
@@ -52,7 +53,7 @@ const UserProfile = () => {
                     />
                 </section>
             ) : (
-                <h1>Is loading</h1>
+                <Loading />
             )}
         </>
     );

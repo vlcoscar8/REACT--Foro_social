@@ -5,7 +5,7 @@ import BtnFollow from "../../../../components/shared/button-follow/BtnFollow";
 import BtnComment from "../../../../components/shared/button-comment/BtnComment";
 import { Link } from "react-router-dom";
 
-const TopicHeader = ({ topic, user }) => {
+const TopicHeader = ({ topic, owner }) => {
     return (
         <>
             <picture className="topic__header">
@@ -15,15 +15,15 @@ const TopicHeader = ({ topic, user }) => {
                     className="topic__header--img"
                 />
                 <Link
-                    to={`/user/${user.username}`}
+                    to={`/user/${owner.username}`}
                     className="topic__header--user"
                 >
                     <img
-                        src={user.avatarProfile}
-                        alt={user.username + "avatar image"}
+                        src={owner.avatarProfile}
+                        alt={owner.username + "avatar image"}
                         className="img"
                     />
-                    <h3 className="username">{user.username}</h3>
+                    <h3 className="username">{owner.username}</h3>
                 </Link>
             </picture>
             <figure className="topic__header-card">

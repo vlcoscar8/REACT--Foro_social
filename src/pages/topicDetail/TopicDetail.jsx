@@ -1,37 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { environment } from "../../environment/environment";
+import { getTopicComments, getTopicUser } from "../../actions/topicActions";
+import useTopicDetail from "../../customHooks/useTopicDetail";
 import Comment from "./components/comment/Comment";
 import TopicHeader from "./components/topicHeader/TopicHeader";
 
 const TopicDetail = () => {
     const { id } = useParams();
-    const [topic, setTopic] = useState();
-    const [user, setUser] = useState();
-    const [comments, setComments] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+
+    const dispatch = useDispatch();
+    const { topicDetail, done } = useTopicDetail(id);
+    const { topicUser, topicComments } = useSelector((state) => state.topic);
 
     useEffect(() => {
-        try {
-            fetch(`${environment.API_URL}/topic/${id}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setTopic(data[0]);
-                    setUser(data[0].user[0]);
-                    setComments(data[0].comments);
-                    setIsLoaded(true);
-                });
-        } catch (error) {
-            console.log(error);
-        }
-    }, [id]);
+        done && dispatch(getTopicUser(topicDetail));
+        done && dispatch(getTopicComments(topicDetail));
+    }, [dispatch, done, topicDetail]);
 
     return (
         <>
-            {isLoaded ? (
+            {done ? (
                 <section className="topic">
-                    <TopicHeader topic={topic} user={user} />
-                    {comments.map((comment) => {
+                    <TopicHeader topic={topicDetail[0]} owner={topicUser} />
+                    {topicComments.map((comment) => {
                         return (
                             <>
                                 <Comment
