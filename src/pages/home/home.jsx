@@ -8,7 +8,7 @@ const Home = () => {
 
     return (
         <>
-            {!loading ? (
+            {!loading && familyTopics ? (
                 <section className="home">
                     {familyTopics.map((family) => (
                         <FamilyTopicCard family={family} key={family.id} />

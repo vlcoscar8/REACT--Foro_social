@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { environment } from "../../environment/environment";
+import FamilyHeader from "./components/familyHeader/FamilyHeader";
 import TopicDetailCard from "./components/topicDetailCard/TopicDetailCard";
 
 const FamilyTopicDetail = () => {
@@ -25,16 +26,10 @@ const FamilyTopicDetail = () => {
         <>
             {isLoaded ? (
                 <section className="family">
-                    <figure className="family__header">
-                        <img
-                            src={familyDetail.logo}
-                            alt={familyDetail.title}
-                            className="family__header--logo"
-                        />
-                        <h2 className="family__header--title">
-                            {familyDetail.title}
-                        </h2>
-                    </figure>
+                    <FamilyHeader
+                        logo={familyDetail.logo}
+                        title={familyDetail.title}
+                    />
                     <div className="family__topics">
                         {familyDetail.topics.map((topic) => (
                             <TopicDetailCard key={topic.id} topic={topic} />

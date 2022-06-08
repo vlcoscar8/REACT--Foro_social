@@ -1,0 +1,22 @@
+.family__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    width: 90%;
+    max-width: 100rem;
+    gap: 3rem;
+    padding: 3rem;
+    border: 1px solid orange;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    &--logo {
+        width: 15%;
+        max-width: 10rem;
+    }
+
+    &--title {
+        font-size: 3rem;
+    }
+}
