@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Navigate,
+    Route,
+    Routes,
+} from "react-router-dom";
 import { ForoContextProvider } from "./context/apiContext";
 import Home from "./pages/home/Home";
 import Header from "./components/core/header/Header";
@@ -27,6 +32,7 @@ function App() {
                                 path="/user/:username"
                                 element={<UserProfile />}
                             />
+                            <Route path="*" element={<Navigate to="/home" />} />
                         </Routes>
                     </main>
                     <footer></footer>

@@ -1,29 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import FamilyTopicCard from "./components/familyTopicCard/FamilyTopicCard";
-import { getFamilyTopicsList } from "../../actions/familyActions";
-import { useDispatch } from "react-redux";
 import { useFamilyList } from "../../customHooks/useFamilyList";
+import Loading from "../../components/shared/loading/Loading";
 
 const Home = () => {
-    const { familyTopics, errors, loading } = useFamilyList();
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getFamilyTopicsList());
-    }, [dispatch]);
+    const { familyTopics, error, loading } = useFamilyList();
 
     return (
         <>
-            {familyTopics ? (
+            {!loading ? (
                 <section className="home">
                     {familyTopics.map((family) => (
                         <FamilyTopicCard family={family} key={family.id} />
                     ))}
                 </section>
             ) : (
-                <h1>Loading...</h1>
+                <Loading />
             )}
+            {error && <h1>Error</h1>}
         </>
     );
 };

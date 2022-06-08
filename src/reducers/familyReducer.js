@@ -1,8 +1,8 @@
 import * as actions from "../actions/familyActions";
 
-export const initialState = {
+const initialState = {
     familyTopics: [],
-    errors: false,
+    error: false,
     loading: false,
 };
 
