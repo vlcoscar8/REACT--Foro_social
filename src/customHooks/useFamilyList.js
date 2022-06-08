@@ -9,8 +9,5 @@ export function useFamilyList() {
         dispatch(getFamilyList());
     }, [dispatch]);
 
-    return useSelector((state) => {
-        console.log(state.familyList);
-        return state.familyList;
-    });
+    return useSelector((state) => state.familyList);
 }

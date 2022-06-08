@@ -1,7 +1,7 @@
 import * as actions from "../actions/familyDetailActions";
 
 const INITIAL_STATE = {
-    family: {},
+    family: [],
     loading: false,
     error: false,
 };
@@ -16,10 +16,10 @@ export default function familyDetailReducer(state = INITIAL_STATE, action) {
         case actions.GET_FAMILY_DETAIL_OK:
             return {
                 family: action.payload,
-                loading: true,
+                loading: false,
                 error: false,
             };
-        case actions.GET_FAMILY_DETAIL_NOK:
+        case actions.GET_FAMILY_DETAIL_ERROR:
             return {
                 ...state,
                 loading: false,

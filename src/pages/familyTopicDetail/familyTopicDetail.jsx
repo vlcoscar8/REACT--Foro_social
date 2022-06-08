@@ -1,49 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../../components/shared/loading/Loading";
 import { useFamilyDetail } from "../../customHooks/useFamilyDetail";
-import { environment } from "../../environment/environment";
 import FamilyHeader from "./components/familyHeader/FamilyHeader";
 import TopicDetailCard from "./components/topicDetailCard/TopicDetailCard";
 
 const FamilyTopicDetail = () => {
-    const [familyDetail, setFamilyDetail] = useState();
-    const [isLoaded, setIsLoaded] = useState(false);
     const { id } = useParams();
-
     const { family, loading, error } = useFamilyDetail(id);
-
-    console.log(family);
-
-    useEffect(() => {
-        try {
-            fetch(`${environment.API_URL}/topic/family/${id}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setFamilyDetail(data[0]);
-                    setIsLoaded(true);
-                });
-        } catch (error) {
-            console.log(error);
-        }
-    }, [id]);
 
     return (
         <>
-            {isLoaded ? (
+            {!loading ? (
                 <section className="family">
                     <FamilyHeader
-                        logo={familyDetail.logo}
-                        title={familyDetail.title}
+                        logo={family[0].logo}
+                        title={family[0].title}
                     />
                     <div className="family__topics">
-                        {familyDetail.topics.map((topic) => (
+                        {family[0].topics.map((topic) => (
                             <TopicDetailCard key={topic.id} topic={topic} />
                         ))}
                     </div>
                 </section>
             ) : (
-                <h2>Loading...</h2>
+                <Loading />
             )}
+            {error && <h1>Error</h1>}
         </>
     );
 };

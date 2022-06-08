@@ -2,31 +2,31 @@ import { serviceGetFamilyDetail } from "../services/familyDetail";
 
 export const GET_FAMILY_DETAIL = "GET_FAMILY_DETAIL";
 export const GET_FAMILY_DETAIL_OK = "GET_FAMILY_DETAIL_OK";
-export const GET_FAMILY_DETAIL_NOK = "GET_FAMILY_DETAIL_NOK";
+export const GET_FAMILY_DETAIL_ERROR = "GET_FAMILY_DETAIL_ERROR";
 
 const actionGetFamilyDetail = () => ({
     type: GET_FAMILY_DETAIL,
 });
 
-const actionGetFamilyDetailOk = (topicList) => ({
+const actionGetFamilyDetailOk = (familyDetail) => ({
     type: GET_FAMILY_DETAIL_OK,
-    payload: topicList,
+    payload: familyDetail,
 });
 
-const actionGetFamilyDetailNok = () => ({
-    type: GET_FAMILY_DETAIL_NOK,
+const actionGetFamilyDetailError = () => ({
+    type: GET_FAMILY_DETAIL_ERROR,
 });
 
 export function getFamilyDetail(id) {
     return async (dispatch) => {
         dispatch(actionGetFamilyDetail());
         try {
-            const topicList = await serviceGetFamilyDetail(id);
+            const familyDetail = await serviceGetFamilyDetail(id);
 
-            dispatch(actionGetFamilyDetailOk(topicList));
+            dispatch(actionGetFamilyDetailOk(familyDetail));
         } catch (error) {
             console.log(error);
-            dispatch(actionGetFamilyDetailNok());
+            dispatch(actionGetFamilyDetailError());
         }
     };
 }
