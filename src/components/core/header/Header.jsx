@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <header className="header">
             <nav className="header__nav">
-                <Link to="/">
+                <Link to="/home">
                     <FontAwesomeIcon
                         icon={faPhoenixSquadron}
                         className="header__nav--icon"

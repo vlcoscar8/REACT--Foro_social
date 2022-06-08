@@ -29,7 +29,7 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
                 setShowError(false);
             }, 4000);
         }
-    }, [userData]);
+    }, [userData, handleShowModal, submit]);
 
     // Listen all the changes on the input form
     const handleChangeForm = (e) => {

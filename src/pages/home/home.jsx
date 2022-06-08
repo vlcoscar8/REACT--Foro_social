@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import FamilyTopicCard from "./components/familyTopicCard/FamilyTopicCard";
-import { environment } from "../../environment/environment";
+import { getFamilyTopicsList } from "../../actions/familyActions";
+import { connect } from "react-redux";
 
-const Home = ({ listenHomeClick }) => {
-    const [familyTopics, setFamilyTopics] = useState([]);
-
+const Home = ({ dispatch, familyTopics }) => {
     useEffect(() => {
-        fetch(`${environment.API_URL}/topic/family`)
-            .then((res) => res.json())
-            .then((data) => setFamilyTopics(data));
-    }, []);
+        // fetch(`${environment.API_URL}/topic/family`)
+        //     .then((res) => res.json())
+        //     .then((data) => setFamilyTopics(data));
+        dispatch(getFamilyTopicsList());
+    }, [dispatch]);
 
     return (
         <>
             {familyTopics ? (
                 <section className="home">
                     {familyTopics.map((family) => (
-                        <FamilyTopicCard
-                            family={family}
-                            key={family.id}
-                            listenHomeClick={listenHomeClick}
-                        />
+                        <FamilyTopicCard family={family} key={family.id} />
                     ))}
                 </section>
             ) : (
@@ -30,4 +26,10 @@ const Home = ({ listenHomeClick }) => {
     );
 };
 
-export default Home;
+const mapStateToProps = (state) => ({
+    familyTopics: state.family.familyTopics,
+    errors: state.family.errors,
+    loading: state.family.loading,
+});
+
+export default connect(mapStateToProps)(Home);

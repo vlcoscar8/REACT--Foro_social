@@ -9,12 +9,12 @@ import UserProfile from "./pages/userProfile/UserProfile";
 function App() {
     return (
         <>
-            <Router>
-                <ForoContextProvider>
+            <ForoContextProvider>
+                <Router>
                     <Header />
                     <main>
                         <Routes>
-                            <Route path="/" element={<Home />} />
+                            <Route path="/home" element={<Home />} />
                             <Route
                                 path="/family/:id"
                                 element={<FamilyTopicDetail />}
@@ -30,8 +30,8 @@ function App() {
                         </Routes>
                     </main>
                     <footer></footer>
-                </ForoContextProvider>
-            </Router>
+                </Router>
+            </ForoContextProvider>
         </>
     );
 }
