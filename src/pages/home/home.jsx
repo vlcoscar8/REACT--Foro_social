@@ -4,13 +4,13 @@ import { useFamilyList } from "../../customHooks/useFamilyList";
 import Loading from "../../components/shared/loading/Loading";
 
 const Home = () => {
-    const { familyTopics, error, loading } = useFamilyList();
+    const { familyList, error, loading } = useFamilyList();
 
     return (
         <>
-            {!loading && familyTopics ? (
+            {!loading && familyList ? (
                 <section className="home">
-                    {familyTopics.map((family) => (
+                    {familyList.map((family) => (
                         <FamilyTopicCard family={family} key={family.id} />
                     ))}
                 </section>

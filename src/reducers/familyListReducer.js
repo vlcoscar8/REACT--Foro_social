@@ -1,22 +1,22 @@
-import * as actions from "../actions/familyActions";
+import * as actions from "../actions/familyListActions";
 
 const initialState = {
-    familyTopics: [],
+    familyList: [],
     error: false,
     loading: false,
 };
 
-export default function familyReducer(state = initialState, action) {
+export default function familyListReducer(state = initialState, action) {
     switch (action.type) {
-        case actions.GET_FAMILY:
+        case actions.GET_FAMILY_LIST:
             return { ...state, loading: true };
-        case actions.GET_FAMILY_OK:
+        case actions.GET_FAMILY_LIST_OK:
             return {
-                familyTopics: action.payload,
+                familyList: action.payload,
                 loading: false,
                 error: false,
             };
-        case actions.GET_FAMILY_ERROR:
+        case actions.GET_FAMILY_LIST_ERROR:
             return { ...state, loading: false, error: true };
         default:
             return state;

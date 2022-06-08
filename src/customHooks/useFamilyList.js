@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFamilyTopicsList } from "../actions/familyActions";
+import { getFamilyList } from "../actions/familyListActions";
 
 export function useFamilyList() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getFamilyTopicsList());
+        dispatch(getFamilyList());
     }, [dispatch]);
 
-    return useSelector((state) => state.family);
+    return useSelector((state) => {
+        console.log(state.familyList);
+        return state.familyList;
+    });
 }

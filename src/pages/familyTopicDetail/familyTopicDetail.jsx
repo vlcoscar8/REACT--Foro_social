@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useFamilyDetail } from "../../customHooks/useFamilyDetail";
 import { environment } from "../../environment/environment";
 import FamilyHeader from "./components/familyHeader/FamilyHeader";
 import TopicDetailCard from "./components/topicDetailCard/TopicDetailCard";
@@ -8,6 +9,10 @@ const FamilyTopicDetail = () => {
     const [familyDetail, setFamilyDetail] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
     const { id } = useParams();
+
+    const { family, loading, error } = useFamilyDetail(id);
+
+    console.log(family);
 
     useEffect(() => {
         try {
