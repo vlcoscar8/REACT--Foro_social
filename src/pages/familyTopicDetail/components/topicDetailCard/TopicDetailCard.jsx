@@ -8,7 +8,12 @@ import Loading from "../../../../components/shared/loading/Loading";
 
 const TopicDetailCard = ({ topic }) => {
     const userId = topic.user[0];
-    const { userDetail, loading, error } = useUserDetail(userId);
+    const userController = {
+        type: "ID",
+        payload: userId,
+    };
+
+    const { userDetail, loading, error } = useUserDetail(userController);
 
     return (
         <>

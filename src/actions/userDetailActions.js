@@ -17,11 +17,12 @@ const actionGetUserDetailNok = () => ({
     type: GET_USER_DETAIL_NOK,
 });
 
-export default function getUserDetail(userId) {
+export default function getUserDetail(userController) {
     return async (dispach) => {
         dispach(actionGetUserDetail());
         try {
-            const userDetail = await serviceGetUserDetail(userId);
+            const userDetail = await serviceGetUserDetail(userController);
+
             dispach(actionGetUserDetailOk(userDetail));
         } catch (error) {
             console.log(error);
