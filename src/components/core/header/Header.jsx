@@ -23,9 +23,9 @@ const Header = () => {
                     />
                 </Link>
                 {userData.userId !== null ? (
-                    <p>{userData.userId}</p>
+                    <p>Hi {userData.userId}</p>
                 ) : (
-                    <p>Hola</p>
+                    <p>Welcome!</p>
                 )}
                 <div className="header__nav--buttons">
                     <button onClick={showModal}>
