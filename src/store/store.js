@@ -3,11 +3,11 @@ import { applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import familyReducer from "../reducers/familyReducer";
-import userDetailReducer from "../reducers/userDetailReducer";
+import userReducer from "../reducers/userReducer";
 
 const rootReducer = combineReducers({
     family: familyReducer,
-    userDetail: userDetailReducer,
+    user: userReducer,
 });
 
 export const store = configureStore(

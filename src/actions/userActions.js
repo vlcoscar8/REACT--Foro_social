@@ -1,11 +1,11 @@
-import { serviceGetUserDetail } from "../services/userDetail.services";
+import { serviceGetUserDetail } from "../services/user.services";
 
-export const GET_USER_DETAIL = "GET_USER_DETAIL";
+export const GET_USER = "GET_USER";
 export const GET_USER_DETAIL_OK = "GET_USER_DETAIL_OK";
-export const GET_USER_DETAIL_NOK = "GET_USER_DETAIL_NOK";
+export const GET_USER_NOK = "GET_USER_NOK";
 
-const actionGetUserDetail = () => ({
-    type: GET_USER_DETAIL,
+const actionGetUser = () => ({
+    type: GET_USER,
 });
 
 const actionGetUserDetailOk = (userDetail) => ({
@@ -13,20 +13,20 @@ const actionGetUserDetailOk = (userDetail) => ({
     payload: userDetail,
 });
 
-const actionGetUserDetailNok = () => ({
-    type: GET_USER_DETAIL_NOK,
+const actionGetUserNok = () => ({
+    type: GET_USER_NOK,
 });
 
 export default function getUserDetail(userController) {
     return async (dispach) => {
-        dispach(actionGetUserDetail());
+        dispach(actionGetUser());
         try {
             const userDetail = await serviceGetUserDetail(userController);
 
             dispach(actionGetUserDetailOk(userDetail));
         } catch (error) {
             console.log(error);
-            dispach(actionGetUserDetailNok());
+            dispach(actionGetUserNok());
         }
     };
 }

@@ -1,4 +1,4 @@
-import * as actions from "../actions/userDetailActions";
+import * as actions from "../actions/userActions";
 
 const INITIAL_STATE = {
     userDetail: [],
@@ -6,9 +6,9 @@ const INITIAL_STATE = {
     error: false,
 };
 
-export default function userDetailReducer(state = INITIAL_STATE, action) {
+export default function userReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
-        case actions.GET_USER_DETAIL:
+        case actions.GET_USER:
             return {
                 ...state,
                 loading: true,
@@ -19,7 +19,7 @@ export default function userDetailReducer(state = INITIAL_STATE, action) {
                 loading: false,
                 error: false,
             };
-        case actions.GET_USER_DETAIL_NOK:
+        case actions.GET_USER_NOK:
             return {
                 ...state,
                 loading: false,

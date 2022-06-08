@@ -9,8 +9,6 @@ const FamilyTopicDetail = () => {
     const { id } = useParams();
     const { familyDetail, loading, error } = useFamilyDetail(id);
 
-    console.log(familyDetail);
-
     return (
         <>
             {!loading && familyDetail ? (
