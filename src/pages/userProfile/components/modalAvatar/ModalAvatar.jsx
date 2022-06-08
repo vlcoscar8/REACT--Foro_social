@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import AvatarList from "../avatarList/AvatarList";
 
-const ModalAvatar = ({ user, showModal, modal }) => {
+const ModalAvatar = ({ userDetail, showModal, modal }) => {
     const handleShowModal = () => {
         showModal(false);
     };
@@ -18,16 +18,16 @@ const ModalAvatar = ({ user, showModal, modal }) => {
                 </button>
                 <div className="modal-avatar__image">
                     <img
-                        src={user.avatarProfile}
+                        src={userDetail.avatarProfile}
                         alt="avatar"
                         className="img"
                     />
                     <div className="coins">
                         <FontAwesomeIcon icon={faGem} className="icon" />
-                        <p>{user.coins}</p>
+                        <p>{userDetail.coins}</p>
                     </div>
                 </div>
-                <AvatarList user={user} />
+                <AvatarList userDetail={userDetail} />
             </section>
             <div
                 className={

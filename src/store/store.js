@@ -2,13 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import familyListReducer from "../reducers/familyListReducer";
-import familyDetailReducer from "../reducers/familyDetailReducer";
+import familyReducer from "../reducers/familyReducer";
 import userDetailReducer from "../reducers/userDetailReducer";
 
 const rootReducer = combineReducers({
-    familyList: familyListReducer,
-    familyDetail: familyDetailReducer,
+    family: familyReducer,
     userDetail: userDetailReducer,
 });
 

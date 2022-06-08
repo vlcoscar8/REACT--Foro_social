@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getFamilyDetail } from "../actions/familyDetailActions";
+import { getFamilyDetail } from "../actions/familyActions";
 import { store } from "../store/store";
 
 export function useFamilyDetail(id) {
     const dispatch = useDispatch();
 
-    const { familyDetail } = store.getState();
+    const { family } = store.getState();
 
-    if (familyDetail.family.length === 0) {
+    if (family.familyDetail.length === 0) {
         dispatch(getFamilyDetail(id));
     }
 
-    return useSelector((state) => state.familyDetail);
+    return useSelector((state) => state.family);
 }

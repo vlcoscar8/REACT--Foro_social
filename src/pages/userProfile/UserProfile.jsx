@@ -1,24 +1,21 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 import ModalAvatar from "./components/modalAvatar/ModalAvatar";
 import UserHeader from "./components/userHeader/UserHeader";
 import UserTopic from "./components/userTopic/UserTopic";
-import { environment } from "../../environment/environment";
+import useUserDetail from "../../customHooks/useUserDetail";
 
 const UserProfile = () => {
     const { username } = useParams();
-    const [user, setUser] = useState();
     const [topics, setTopics] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [modal, setModal] = useState(false);
 
-    useEffect(() => {
-        fetch(`${environment.API_URL}/user/name/${username}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setUser(data);
-            });
-    }, [username]);
+    const userController = {
+        type: "name",
+        payload: username,
+    };
+    const { userDetail } = useUserDetail(userController);
 
     const memoizedTopicsValue = useCallback(topics, [topics]);
 
@@ -34,10 +31,10 @@ const UserProfile = () => {
 
     return (
         <>
-            {user !== undefined ? (
+            {userDetail.length !== 0 ? (
                 <section className="user-profile">
                     <UserHeader
-                        user={user}
+                        userDetail={userDetail}
                         showTopics={showTopics}
                         showModal={showModal}
                     />
@@ -49,7 +46,7 @@ const UserProfile = () => {
                         <h2>Interesting...</h2>
                     )}
                     <ModalAvatar
-                        user={user}
+                        userDetail={userDetail}
                         showModal={showModal}
                         modal={modal}
                     />

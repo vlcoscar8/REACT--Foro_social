@@ -2,19 +2,19 @@ import { faGem } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useState } from "react";
 
-const UserHeader = ({ user, showTopics, showModal }) => {
+const UserHeader = ({ userDetail, showTopics, showModal }) => {
     const [whoClicked, setWhoClicked] = useState("");
 
     const memoizedValue = useCallback(whoClicked, [whoClicked]);
 
     const clickOnTopics = () => {
-        showTopics(user.topics);
+        showTopics(userDetail.topics);
 
         memoizedValue === "topic" ? setWhoClicked("") : setWhoClicked("topic");
     };
 
     const clickOnFollow = () => {
-        showTopics(user.topicsFollowing);
+        showTopics(userDetail.topicsFollowing);
         memoizedValue === "follow"
             ? setWhoClicked("")
             : setWhoClicked("follow");
@@ -39,15 +39,15 @@ const UserHeader = ({ user, showTopics, showModal }) => {
                 </button>
                 <div className="user-header__user--avatar">
                     <img
-                        src={user.avatarProfile}
+                        src={userDetail.avatarProfile}
                         alt="user avatar"
                         className="img"
                     />
-                    <h2 className="username">{user.username}</h2>
+                    <h2 className="username">{userDetail.username}</h2>
                 </div>
                 <div className="user-header__user--coins">
                     <FontAwesomeIcon icon={faGem} className="icon" />
-                    <p>{user.coins}</p>
+                    <p>{userDetail.coins}</p>
                 </div>
             </div>
             <figure className="user-header__nav">
@@ -60,7 +60,7 @@ const UserHeader = ({ user, showTopics, showModal }) => {
                     onClick={clickOnTopics}
                 >
                     <p>Topics created</p>
-                    <p className="counter">{user.topics.length}</p>
+                    <p className="counter">{userDetail.topics.length}</p>
                 </div>
                 <div
                     className={
@@ -71,7 +71,9 @@ const UserHeader = ({ user, showTopics, showModal }) => {
                     onClick={clickOnFollow}
                 >
                     <p>Topics followed</p>
-                    <p className="counter">{user.topicsFollowing.length}</p>
+                    <p className="counter">
+                        {userDetail.topicsFollowing.length}
+                    </p>
                 </div>
             </figure>
         </figure>

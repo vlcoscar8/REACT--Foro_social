@@ -7,18 +7,20 @@ import TopicDetailCard from "./components/topicDetailCard/TopicDetailCard";
 
 const FamilyTopicDetail = () => {
     const { id } = useParams();
-    const { family, loading, error } = useFamilyDetail(id);
+    const { familyDetail, loading, error } = useFamilyDetail(id);
+
+    console.log(familyDetail);
 
     return (
         <>
-            {!loading && family ? (
+            {!loading && familyDetail ? (
                 <section className="family">
                     <FamilyHeader
-                        logo={family[0].logo}
-                        title={family[0].title}
+                        logo={familyDetail[0].logo}
+                        title={familyDetail[0].title}
                     />
                     <div className="family__topics">
-                        {family[0].topics.map((topic) => (
+                        {familyDetail[0].topics.map((topic) => (
                             <TopicDetailCard key={topic.id} topic={topic} />
                         ))}
                     </div>
