@@ -1,41 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import BtnFollow from "../../../../components/shared/button-follow/BtnFollow";
-import { environment } from "../../../../environment/environment";
+import useUserDetail from "../../../../customHooks/useUserDetail";
+import Loading from "../../../../components/shared/loading/Loading";
 
 const TopicDetailCard = ({ topic }) => {
-    const [user, setUser] = useState();
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        const userId = topic.user[0];
-
-        try {
-            fetch(`${environment.API_URL}/user/${userId}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setUser(data);
-                    setIsLoaded(true);
-                });
-        } catch (error) {
-            console.log(error);
-        }
-    }, [topic]);
+    const userId = topic.user[0];
+    const { userDetail, loading, error } = useUserDetail(userId);
 
     return (
         <>
-            {isLoaded ? (
+            {!loading && userDetail ? (
                 <Link to={`/topic/${topic.id}`} className="topic-card">
                     <figure className="topic-card__header">
                         <div className="topic-card__header--user">
                             <img
-                                src={user.avatarProfile}
-                                alt={user.username + "avatar"}
+                                src={userDetail.avatarProfile}
+                                alt={userDetail.username + "avatar"}
                                 className="img"
                             />
-                            <h3 className="user">{user.username}</h3>
+                            <h3 className="user">{userDetail.username}</h3>
                         </div>
                         <div className="topic-card__header--title">
                             <h2 className="title">{topic.title}</h2>
@@ -71,8 +57,9 @@ const TopicDetailCard = ({ topic }) => {
                     </picture>
                 </Link>
             ) : (
-                <h1>Is loading...</h1>
+                <Loading />
             )}
+            {error && <h1>Error</h1>}
         </>
     );
 };

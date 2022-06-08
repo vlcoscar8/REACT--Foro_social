@@ -1,4 +1,4 @@
-import { serviceGetFamilyList } from "../services/familyList";
+import { serviceGetFamilyList } from "../services/familyList.services";
 
 export const GET_FAMILY_LIST = "GET_FAMILY_LIST";
 export const GET_FAMILY_LIST_OK = "GET_FAMILY_LIST_OK";

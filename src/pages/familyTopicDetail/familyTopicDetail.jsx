@@ -11,7 +11,7 @@ const FamilyTopicDetail = () => {
 
     return (
         <>
-            {!loading ? (
+            {!loading && family ? (
                 <section className="family">
                     <FamilyHeader
                         logo={family[0].logo}

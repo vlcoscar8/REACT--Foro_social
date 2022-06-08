@@ -1,4 +1,4 @@
-import { serviceGetFamilyDetail } from "../services/familyDetail";
+import { serviceGetFamilyDetail } from "../services/familyDetail.services";
 
 export const GET_FAMILY_DETAIL = "GET_FAMILY_DETAIL";
 export const GET_FAMILY_DETAIL_OK = "GET_FAMILY_DETAIL_OK";

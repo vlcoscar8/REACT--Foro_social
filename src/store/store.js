@@ -4,10 +4,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import familyListReducer from "../reducers/familyListReducer";
 import familyDetailReducer from "../reducers/familyDetailReducer";
+import userDetailReducer from "../reducers/userDetailReducer";
 
 const rootReducer = combineReducers({
     familyList: familyListReducer,
     familyDetail: familyDetailReducer,
+    userDetail: userDetailReducer,
 });
 
 export const store = configureStore(
