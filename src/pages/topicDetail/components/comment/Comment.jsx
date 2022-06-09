@@ -1,46 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ButtonRepply from "../../../../components/shared/button-repply/ButtonRepply";
-import { environment } from "../../../../environment/environment";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
+import { useToggleComment } from "../../../../customHooks/useToggleComment";
 
 const Comment = ({ comment, isComment }) => {
-    const [user, setUser] = useState();
-    const [reply, setReply] = useState();
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        if (isComment) {
-            try {
-                fetch(`${environment.API_URL}/user/${comment.user}`)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        setUser(data);
-                        setIsLoaded(true);
-                    });
-            } catch (error) {
-                console.log(error);
-            }
-        } else {
-            try {
-                fetch(`${environment.API_URL}/comment/${comment}`)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        setReply(data);
-
-                        fetch(`${environment.API_URL}/user/${data.user[0]}`)
-                            .then((res) => res.json())
-                            .then((data) => {
-                                setUser(data);
-                                setIsLoaded(true);
-                            });
-                    });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }, []);
+    const { user, reply, isLoaded } = useToggleComment(isComment, comment);
 
     return (
         <>
@@ -88,8 +54,8 @@ const Comment = ({ comment, isComment }) => {
                         >
                             {isComment ? comment.content : reply.content}
                         </p>
-                        {isComment ? <ButtonRepply /> : ""}
-                        {isComment ? (
+                        {isComment && <ButtonRepply />}
+                        {isComment && (
                             <div className="comment__content--replies">
                                 <FontAwesomeIcon
                                     icon={faMessage}
@@ -99,8 +65,6 @@ const Comment = ({ comment, isComment }) => {
                                     {comment.replies.length}
                                 </p>
                             </div>
-                        ) : (
-                            ""
                         )}
                     </div>
                 </figure>

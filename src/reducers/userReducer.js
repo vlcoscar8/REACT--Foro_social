@@ -4,6 +4,7 @@ const INITIAL_STATE = {
     userDetail: [],
     loading: false,
     error: false,
+    done: false,
 };
 
 export default function userReducer(state = INITIAL_STATE, action) {
@@ -18,6 +19,7 @@ export default function userReducer(state = INITIAL_STATE, action) {
                 userDetail: action.payload,
                 loading: false,
                 error: false,
+                done: true,
             };
         case actions.GET_USER_NOK:
             return {

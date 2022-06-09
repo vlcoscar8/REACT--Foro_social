@@ -21,7 +21,7 @@ const TopicDetail = () => {
     return (
         <>
             {done ? (
-                <section className="topic">
+                <section className="topic" id="">
                     <TopicHeader topic={topicDetail[0]} owner={topicUser} />
                     {topicComments.map((comment) => {
                         return (
@@ -31,17 +31,16 @@ const TopicDetail = () => {
                                     key={comment.id}
                                     isComment={true}
                                 />
-                                {comment.replies.length > 0
-                                    ? comment.replies.map((reply) => {
-                                          return (
-                                              <Comment
-                                                  comment={reply}
-                                                  key={reply}
-                                                  isComment={false}
-                                              />
-                                          );
-                                      })
-                                    : ""}
+                                {comment.replies.length > 0 &&
+                                    comment.replies.map((reply) => {
+                                        return (
+                                            <Comment
+                                                comment={reply}
+                                                key={reply}
+                                                isComment={false}
+                                            />
+                                        );
+                                    })}
                             </>
                         );
                     })}
