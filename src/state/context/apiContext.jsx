@@ -1,6 +1,5 @@
 import React, { createContext, useState } from "react";
-import useTopicDetail from "../customHooks/useTopicDetail";
-import { environment } from "../environment/environment";
+import { environment } from "../../environment/environment";
 
 export const ForoContext = createContext();
 

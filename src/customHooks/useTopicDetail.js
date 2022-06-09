@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTopicDetail } from "../actions/topicActions";
+import { getTopicDetail } from "../state/actions/topicActions";
 
 export default function useTopicDetail(topicId) {
     const dispatch = useDispatch();

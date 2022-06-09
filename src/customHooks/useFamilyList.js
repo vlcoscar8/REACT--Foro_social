@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFamilyList } from "../actions/familyActions";
+import { getFamilyList } from "../state/actions/familyActions";
 
 export function useFamilyList() {
     const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { environment } from "../environment/environment";
+import { environment } from "../../environment/environment";
 
 export const serviceGetUserDetail = async (userController) => {
     const response = await fetch(

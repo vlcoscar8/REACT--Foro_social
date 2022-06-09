@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getFamilyDetail } from "../actions/familyActions";
-import { store } from "../store/store";
+import { getFamilyDetail } from "../state/actions/familyActions";
+import { store } from "../state/store/store";
 
 export function useFamilyDetail(id) {
     const dispatch = useDispatch();

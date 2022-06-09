@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ForoContext } from "../../../context/apiContext";
+import { ForoContext } from "../../../state/context/apiContext";
 
 const LogoutModalSide = ({ handleShowModal, showRegister }) => {
     const { logout, userData } = useContext(ForoContext);

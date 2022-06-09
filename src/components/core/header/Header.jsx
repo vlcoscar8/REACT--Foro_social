@@ -3,7 +3,7 @@ import { faPhoenixSquadron } from "@fortawesome/free-brands-svg-icons";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ModalLogin from "../modalLogin/ModalLogin";
-import { ForoContext } from "../../../context/apiContext";
+import { ForoContext } from "../..//../state/context/apiContext";
 
 const Header = () => {
     const [modalActive, setModalActive] = useState(false);

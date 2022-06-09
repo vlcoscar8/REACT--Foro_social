@@ -1,7 +1,7 @@
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
-import { ForoContext } from "../../../context/apiContext";
+import { ForoContext } from "../../../state/context/apiContext";
 
 const INITIAL_STATE = {
     username: "",
@@ -29,7 +29,7 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
                 setShowError(false);
             }, 4000);
         }
-    }, [userData, handleShowModal, submit]);
+    }, [userData]);
 
     // Listen all the changes on the input form
     const handleChangeForm = (e) => {

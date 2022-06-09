@@ -1,4 +1,4 @@
-import { environment } from "../environment/environment";
+import { environment } from "../../environment/environment";
 
 export const serviceGetTopicDetail = async (topicId) => {
     const response = await fetch(`${environment.API_URL}/topic/${topicId}`);

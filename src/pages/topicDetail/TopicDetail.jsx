@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getTopicComments, getTopicUser } from "../../actions/topicActions";
+import {
+    getTopicComments,
+    getTopicUser,
+} from "../../state/actions/topicActions";
 import useTopicDetail from "../../customHooks/useTopicDetail";
 import Comment from "./components/comment/Comment";
 import TopicHeader from "./components/topicHeader/TopicHeader";

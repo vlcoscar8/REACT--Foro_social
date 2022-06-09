@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import getUserDetail from "../actions/userActions";
+import { getUserDetail } from "../state/actions/userActions";
 
 export default function useUserDetail(userController) {
     const dispach = useDispatch();

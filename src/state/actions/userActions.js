@@ -17,7 +17,7 @@ const actionGetUserNok = () => ({
     type: GET_USER_NOK,
 });
 
-export default function getUserDetail(userController) {
+export const getUserDetail = (userController) => {
     return async (dispatch) => {
         dispatch(actionGetUser());
         try {
@@ -29,4 +29,4 @@ export default function getUserDetail(userController) {
             dispatch(actionGetUserNok());
         }
     };
-}
+};
