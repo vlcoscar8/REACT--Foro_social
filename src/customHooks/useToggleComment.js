@@ -36,7 +36,7 @@ export const useToggleComment = (isComment, comment) => {
                 console.log(error);
             }
         }
-    }, []);
+    }, [isComment, comment]);
 
     return { user, reply, isLoaded };
 };
