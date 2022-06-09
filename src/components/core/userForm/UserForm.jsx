@@ -1,7 +1,10 @@
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUserFunction } from "../../../state/actions/authActions";
 import { ForoContext } from "../../../state/context/apiContext";
+import { AuthStateContext } from "../../../state/context/authStateContext";
 
 const INITIAL_STATE = {
     username: "",
@@ -13,8 +16,8 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
     const [form, setForm] = useState(INITIAL_STATE);
     const [submit, setSubmit] = useState(false);
     const [showError, setShowError] = useState(false);
-
     const { fetchUser, userData } = useContext(ForoContext);
+    const { dispatch } = useContext(AuthStateContext);
 
     useEffect(() => {
         if (submit && userData.userId !== null) {
@@ -40,7 +43,8 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
     // Submit form function, setting the form to the login fetch function on the context
     const submitUserForm = (e) => {
         e.preventDefault();
-        fetchUser(form);
+        // fetchUser(form)
+        dispatch(loginUserFunction(form, dispatch));
         setForm(INITIAL_STATE);
         setSubmit(true);
         showRegisterForm("false");

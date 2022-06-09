@@ -4,10 +4,11 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ModalLogin from "../modalLogin/ModalLogin";
 import { ForoContext } from "../..//../state/context/apiContext";
+import { AuthStateContext } from "../../../state/context/authStateContext";
 
 const Header = () => {
     const [modalActive, setModalActive] = useState(false);
-    const { userData } = useContext(ForoContext);
+    const { user } = useContext(AuthStateContext);
 
     const showModal = () => {
         setModalActive(!modalActive);
@@ -22,14 +23,14 @@ const Header = () => {
                         className="header__nav--icon"
                     />
                 </Link>
-                {userData.userId !== null ? (
-                    <p>Hi {userData.userId}</p>
+                {user.userId !== null ? (
+                    <p>Hi {user.userId}</p>
                 ) : (
                     <p>Welcome!</p>
                 )}
                 <div className="header__nav--buttons">
                     <button onClick={showModal}>
-                        {userData.userId !== null ? "Logout" : "Login"}
+                        {user.userId !== null ? "Logout" : "Login"}
                     </button>
                 </div>
             </nav>
