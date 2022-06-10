@@ -13,8 +13,10 @@ const LogoutModalSide = ({ handleShowModal }) => {
 
     return (
         <div className={user.loggedIn ? "logout active" : "logout no-active"}>
-            <p>Are you sure you want logOut?</p>
-            <button onClick={handleLogoutBtn}>Logout</button>
+            <p>Are you sure you want Logout?</p>
+            <button className="logout__btn" onClick={handleLogoutBtn}>
+                Logout
+            </button>
         </div>
     );
 };

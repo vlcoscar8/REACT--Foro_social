@@ -4,7 +4,6 @@ import {
     Route,
     Routes,
 } from "react-router-dom";
-import { ForoContextProvider } from "./state/context/apiContext";
 import Home from "./pages/home/Home";
 import Header from "./components/core/header/Header";
 import FamilyTopicDetail from "./pages/familyTopicDetail/FamilyTopicDetail";
@@ -16,33 +15,28 @@ function App() {
     return (
         <>
             <AuthProvider>
-                <ForoContextProvider>
-                    <Router>
-                        <Header />
-                        <main>
-                            <Routes>
-                                <Route path="/home" element={<Home />} />
-                                <Route
-                                    path="/family/:id"
-                                    element={<FamilyTopicDetail />}
-                                />
-                                <Route
-                                    path="/topic/:id"
-                                    element={<TopicDetail />}
-                                />
-                                <Route
-                                    path="/user/:username"
-                                    element={<UserProfile />}
-                                />
-                                <Route
-                                    path="*"
-                                    element={<Navigate to="/home" />}
-                                />
-                            </Routes>
-                        </main>
-                        <footer></footer>
-                    </Router>
-                </ForoContextProvider>
+                <Router>
+                    <Header />
+                    <main>
+                        <Routes>
+                            <Route path="/home" element={<Home />} />
+                            <Route
+                                path="/family/:id"
+                                element={<FamilyTopicDetail />}
+                            />
+                            <Route
+                                path="/topic/:id"
+                                element={<TopicDetail />}
+                            />
+                            <Route
+                                path="/user/:username"
+                                element={<UserProfile />}
+                            />
+                            <Route path="*" element={<Navigate to="/home" />} />
+                        </Routes>
+                    </main>
+                    <footer></footer>
+                </Router>
             </AuthProvider>
         </>
     );

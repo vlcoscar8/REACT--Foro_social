@@ -16,7 +16,7 @@
     gap: 3rem;
     transition: all 0.4s ease-in;
     background-color: rgb(242, 242, 242);
-    padding: 7rem 0 0 0;
+    padding: 7rem 0;
     box-sizing: border-box;
 
     .btn__close {
@@ -77,10 +77,12 @@
     visibility: hidden;
     transition: all 0.2s ease-in;
     z-index: -10;
+    display: none;
 }
 
 .active {
     opacity: 1;
     visibility: visible;
     transition: all 0.2s ease-in;
+    display: block;
 }
