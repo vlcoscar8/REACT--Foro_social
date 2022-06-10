@@ -16,23 +16,23 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
     const [form, setForm] = useState(INITIAL_STATE);
     const [submit, setSubmit] = useState(false);
     const [showError, setShowError] = useState(false);
-    const { fetchUser, userData } = useContext(ForoContext);
-    const { dispatch } = useContext(AuthStateContext);
+    // const { fetchUser, userData } = useContext(ForoContext);
+    const { dispatch, user } = useContext(AuthStateContext);
 
     useEffect(() => {
-        if (submit && userData.userId !== null) {
+        if (submit && user.loggedIn) {
             handleShowModal();
             setSubmit(false);
         }
 
-        if (submit && userData.userId === null) {
+        if (submit && user.error !== "") {
             setShowError(true);
             setSubmit(false);
             setTimeout(() => {
                 setShowError(false);
             }, 4000);
         }
-    }, [userData]);
+    }, [user]);
 
     // Listen all the changes on the input form
     const handleChangeForm = (e) => {
@@ -43,7 +43,6 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
     // Submit form function, setting the form to the login fetch function on the context
     const submitUserForm = (e) => {
         e.preventDefault();
-        // fetchUser(form)
         dispatch(loginUserFunction(form, dispatch));
         setForm(INITIAL_STATE);
         setSubmit(true);
@@ -58,9 +57,7 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
         <form
             onSubmit={submitUserForm}
             className={
-                userData.userId === null
-                    ? "login-form active"
-                    : "login-form no-active"
+                !user.loggedIn ? "login-form active" : "login-form no-active"
             }
         >
             {showRegister ? (
@@ -73,6 +70,7 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
                         onChange={handleChangeForm}
                         placeholder="username"
                         className="login-form__label--input"
+                        required
                     />
                     <FontAwesomeIcon
                         icon={faEnvelope}
@@ -85,12 +83,13 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
             <label className="login-form__label">
                 <p className="login-form__label--text">Email Adress</p>
                 <input
-                    type="text"
+                    type="email"
                     name="email"
                     value={form.email}
                     onChange={handleChangeForm}
                     placeholder="example@email.com"
                     className="login-form__label--input"
+                    required
                 />
                 <FontAwesomeIcon
                     icon={faEnvelope}
@@ -106,6 +105,7 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
                     onChange={handleChangeForm}
                     placeholder="*********"
                     className="login-form__label--input"
+                    required
                 />
                 <FontAwesomeIcon
                     icon={faLock}
@@ -115,23 +115,15 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
             <button type="submit" className="login-form__btn">
                 {!showRegister ? "Log in" : "Sign up"}
             </button>
-            {!showRegister ? (
+            {!showRegister && (
                 <p
                     className="login-form__question"
                     onClick={handleShowRegisterForm}
                 >
                     Not registered yet?
                 </p>
-            ) : (
-                ""
             )}
-            {showError ? (
-                <p className="login-form__error">
-                    The Email or password is incorrect
-                </p>
-            ) : (
-                ""
-            )}
+            {showError && <p className="login-form__error">{user.error} </p>}
         </form>
     );
 };

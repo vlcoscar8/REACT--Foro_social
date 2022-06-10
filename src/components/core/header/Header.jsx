@@ -3,7 +3,6 @@ import { faPhoenixSquadron } from "@fortawesome/free-brands-svg-icons";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ModalLogin from "../modalLogin/ModalLogin";
-import { ForoContext } from "../..//../state/context/apiContext";
 import { AuthStateContext } from "../../../state/context/authStateContext";
 
 const Header = () => {
@@ -23,14 +22,10 @@ const Header = () => {
                         className="header__nav--icon"
                     />
                 </Link>
-                {user.userId !== null ? (
-                    <p>Hi {user.userId}</p>
-                ) : (
-                    <p>Welcome!</p>
-                )}
+                {user.loggedIn ? <p>Hi {user.userId}</p> : <p>Welcome!</p>}
                 <div className="header__nav--buttons">
                     <button onClick={showModal}>
-                        {user.userId !== null ? "Logout" : "Login"}
+                        {!user.loggedIn ? "Login" : "Logout"}
                     </button>
                 </div>
             </nav>

@@ -2,6 +2,7 @@ import { environment } from "../../environment/environment";
 
 export const LOGIN_LOADING = "LOGIN_LOADING";
 export const LOGIN_OK = "LOGIN_OK";
+export const LOGOUT_OK = "LOGOUT_OK";
 export const LOGIN_NOK = "LOGIN_NOK";
 
 const actionLogin = () => ({
@@ -13,8 +14,13 @@ const actionLoginOk = (data) => ({
     payload: data,
 });
 
-const actionloginNok = () => ({
+const actionLogoutOk = () => ({
+    type: LOGOUT_OK,
+});
+
+const actionloginNok = (data) => ({
     type: LOGIN_NOK,
+    payload: data,
 });
 
 export const loginUserFunction = async (body, dispatch) => {
@@ -34,7 +40,7 @@ export const loginUserFunction = async (body, dispatch) => {
         const data = await response.json();
 
         if (data === "The email or password is incorrect") {
-            dispatch(actionloginNok());
+            dispatch(actionloginNok(data));
             return data;
         }
 
@@ -44,6 +50,24 @@ export const loginUserFunction = async (body, dispatch) => {
             window.localStorage.setItem("token", data.token);
             return data;
         }
+    } catch (error) {
+        console.log(error);
+        dispatch(actionloginNok());
+        return;
+    }
+};
+
+export const logoutUserFunction = async (dispatch) => {
+    dispatch(actionLogin());
+
+    try {
+        const response = await fetch(`${environment.API_URL}/user/logout`);
+        const data = await response.json();
+
+        dispatch(actionLogoutOk());
+        localStorage.clear();
+
+        return data;
     } catch (error) {
         console.log(error);
         dispatch(actionloginNok());
