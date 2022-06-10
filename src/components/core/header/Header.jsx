@@ -8,11 +8,11 @@ import useUserDetail from "../../../customHooks/useUserDetail";
 
 const Header = () => {
     const [modalActive, setModalActive] = useState(false);
-    const { user } = useContext(AuthStateContext);
+    const { userLogged } = useContext(AuthStateContext);
 
     const userController = {
         type: "ID",
-        payload: user.userId,
+        payload: userLogged.userId,
     };
     const { userDetail } = useUserDetail(userController);
 
@@ -29,18 +29,24 @@ const Header = () => {
                         className="header__nav--icon"
                     />
                 </Link>
-                {user.loggedIn ? <p>Hi {user.userId}</p> : <p>Welcome!</p>}
+                {userLogged.loggedIn ? (
+                    <p>Hi {userLogged.userId}</p>
+                ) : (
+                    <p>Welcome!</p>
+                )}
                 <div className="header__nav--buttons">
-                    {user.loggedIn && (
+                    {userLogged.loggedIn && (
                         <Link to={`/user/${userDetail.username}`}>
                             <button className="btn login">View Profile</button>
                         </Link>
                     )}
                     <button
                         onClick={showModal}
-                        className={`btn ${user.loggedIn ? "logout" : "login"}`}
+                        className={`btn ${
+                            userLogged.loggedIn ? "logout" : "login"
+                        }`}
                     >
-                        {!user.loggedIn ? "Login" : "Logout"}
+                        {!userLogged.loggedIn ? "Login" : "Logout"}
                     </button>
                 </div>
             </nav>

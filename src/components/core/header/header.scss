@@ -55,11 +55,14 @@
             }
 
             .logout {
-                background-color: rgb(59, 59, 59);
+                background-color: transparent;
+                color: black;
+                border: 1px solid black;
 
                 &:hover {
                     background-color: rgb(12, 12, 12);
                     transition: all 0.2s ease;
+                    color: white;
                 }
             }
 

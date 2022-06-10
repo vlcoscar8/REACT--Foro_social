@@ -1,9 +1,21 @@
 import { faGem } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import { AuthStateContext } from "../../../../state/context/authStateContext";
 
 const UserHeader = ({ userDetail, showTopics, showModal }) => {
     const [whoClicked, setWhoClicked] = useState("");
+    const [visibility, setVisibility] = useState(false);
+
+    const { userData, userLogged } = useContext(AuthStateContext);
+
+    useEffect(() => {
+        if (userLogged.loggedIn && userData.username === userDetail.username) {
+            setVisibility(true);
+        } else {
+            setVisibility(false);
+        }
+    }, [userLogged, userData]);
 
     const memoizedValue = useCallback(whoClicked, [whoClicked]);
 
@@ -31,12 +43,14 @@ const UserHeader = ({ userDetail, showTopics, showModal }) => {
                 className="user-header__background"
             />
             <div className="user-header__user">
-                <button
-                    className="user-header__user--edit"
-                    onClick={handleShowModal}
-                >
-                    Edit
-                </button>
+                {visibility && (
+                    <button
+                        className="user-header__user--edit"
+                        onClick={handleShowModal}
+                    >
+                        Edit
+                    </button>
+                )}
                 <div className="user-header__user--avatar">
                     <img
                         src={userDetail.avatarProfile}
@@ -45,10 +59,12 @@ const UserHeader = ({ userDetail, showTopics, showModal }) => {
                     />
                     <h2 className="username">{userDetail.username}</h2>
                 </div>
-                <div className="user-header__user--coins">
-                    <FontAwesomeIcon icon={faGem} className="icon" />
-                    <p>{userDetail.coins}</p>
-                </div>
+                {visibility && (
+                    <div className="user-header__user--coins">
+                        <FontAwesomeIcon icon={faGem} className="icon" />
+                        <p>{userDetail.coins}</p>
+                    </div>
+                )}
             </div>
             <figure className="user-header__nav">
                 <div

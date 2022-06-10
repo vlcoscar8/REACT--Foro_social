@@ -7,6 +7,8 @@
     border-radius: 4rem;
     border: 1px solid rgb(189, 50, 0);
     cursor: pointer;
+    position: absolute;
+    bottom: 2rem;
 
     &:hover {
         background-color: rgb(255, 100, 44);

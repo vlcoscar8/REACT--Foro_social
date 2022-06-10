@@ -50,7 +50,9 @@
     position: absolute;
     width: 90%;
     max-width: 70rem;
-    height: 18rem;
+    min-height: 10rem;
+    max-height: 18rem;
+    gap: 1rem;
     background-color: white;
     z-index: 2;
     top: 26rem;

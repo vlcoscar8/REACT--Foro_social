@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import BtnFollow from "../../../../components/shared/button-follow/BtnFollow";
 import BtnComment from "../../../../components/shared/button-comment/BtnComment";
 import { Link } from "react-router-dom";
+import { AuthStateContext } from "../../../../state/context/authStateContext";
 
 const TopicHeader = ({ topic, owner }) => {
+    const { userLogged } = useContext(AuthStateContext);
     return (
         <>
             <picture className="topic__header">
@@ -40,9 +42,14 @@ const TopicHeader = ({ topic, owner }) => {
                         <p className="counter">{topic.followers.length}</p>
                     </div>
                 </div>
+
                 <div className="topic__header-card--buttons">
-                    <BtnComment />
-                    <BtnFollow page="topic" />
+                    {userLogged.loggedIn && (
+                        <>
+                            <BtnComment />
+                            <BtnFollow page="topic" />
+                        </>
+                    )}
                 </div>
             </figure>
         </>

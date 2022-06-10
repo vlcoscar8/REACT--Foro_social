@@ -3,7 +3,7 @@ import { logoutUserFunction } from "../../../state/actions/authActions";
 import { AuthStateContext } from "../../../state/context/authStateContext";
 
 const LogoutModalSide = ({ handleShowModal }) => {
-    const { user, dispatch } = useContext(AuthStateContext);
+    const { userLogged, dispatch } = useContext(AuthStateContext);
 
     // Logout button sending to the context
     const handleLogoutBtn = () => {
@@ -12,7 +12,11 @@ const LogoutModalSide = ({ handleShowModal }) => {
     };
 
     return (
-        <div className={user.loggedIn ? "logout active" : "logout no-active"}>
+        <div
+            className={
+                userLogged.loggedIn ? "logout active" : "logout no-active"
+            }
+        >
             <p>Are you sure you want Logout?</p>
             <button className="logout__btn" onClick={handleLogoutBtn}>
                 Logout

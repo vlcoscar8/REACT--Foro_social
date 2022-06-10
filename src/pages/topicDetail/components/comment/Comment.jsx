@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import ButtonRepply from "../../../../components/shared/button-repply/ButtonRepply";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { useToggleComment } from "../../../../customHooks/useToggleComment";
+import { AuthStateContext } from "../../../../state/context/authStateContext";
 
 const Comment = ({ comment, isComment }) => {
     const { user, reply, isLoaded } = useToggleComment(isComment, comment);
+    const { userLogged } = useContext(AuthStateContext);
 
     return (
         <>
@@ -54,7 +56,7 @@ const Comment = ({ comment, isComment }) => {
                         >
                             {isComment ? comment.content : reply.content}
                         </p>
-                        {isComment && <ButtonRepply />}
+                        {isComment && userLogged.loggedIn && <ButtonRepply />}
                         {isComment && (
                             <div className="comment__content--replies">
                                 <FontAwesomeIcon

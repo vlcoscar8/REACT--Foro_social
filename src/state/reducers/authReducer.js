@@ -9,7 +9,7 @@ export const INITIAL_STATE = {
         : "",
     loading: false,
     error: "",
-    loggedIn: false,
+    loggedIn: window.localStorage.getItem("userId") ? true : false,
 };
 
 export const authReducer = (state = INITIAL_STATE, action) => {

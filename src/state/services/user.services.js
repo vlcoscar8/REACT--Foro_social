@@ -9,6 +9,5 @@ export const serviceGetUserDetail = async (userController) => {
         }`
     );
     const data = response.json();
-
     return data;
 };

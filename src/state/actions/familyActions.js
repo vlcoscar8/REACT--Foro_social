@@ -47,7 +47,6 @@ export function getFamilyDetail(id) {
         dispatch(actionGetFamily());
         try {
             const familyDetail = await serviceGetFamilyDetail(id);
-            console.log("hola", 1);
             dispatch(actionGetFamilyDetailOk(familyDetail));
         } catch (error) {
             console.log(error);

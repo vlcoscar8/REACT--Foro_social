@@ -15,22 +15,22 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
     const [submit, setSubmit] = useState(false);
     const [showError, setShowError] = useState(false);
     // const { fetchUser, userData } = useContext(ForoContext);
-    const { dispatch, user } = useContext(AuthStateContext);
+    const { dispatch, userLogged } = useContext(AuthStateContext);
 
     useEffect(() => {
-        if (submit && user.loggedIn) {
+        if (submit && userLogged.loggedIn) {
             handleShowModal();
             setSubmit(false);
         }
 
-        if (submit && user.error !== "") {
+        if (submit && userLogged.error !== "") {
             setShowError(true);
             setSubmit(false);
             setTimeout(() => {
                 setShowError(false);
             }, 4000);
         }
-    }, [user]);
+    }, [userLogged]);
 
     // Listen all the changes on the input form
     const handleChangeForm = (e) => {
@@ -55,7 +55,9 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
         <form
             onSubmit={submitUserForm}
             className={
-                !user.loggedIn ? "login-form active" : "login-form no-active"
+                !userLogged.loggedIn
+                    ? "login-form active"
+                    : "login-form no-active"
             }
         >
             {showRegister ? (
@@ -121,7 +123,9 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
                     Not registered yet?
                 </p>
             )}
-            {showError && <p className="login-form__error">{user.error} </p>}
+            {showError && (
+                <p className="login-form__error">{userLogged.error} </p>
+            )}
         </form>
     );
 };

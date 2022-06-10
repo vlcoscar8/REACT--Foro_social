@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import BtnFollow from "../../../../components/shared/button-follow/BtnFollow";
 import useUserDetail from "../../../../customHooks/useUserDetail";
 import Loading from "../../../../components/shared/loading/Loading";
+import { AuthStateContext } from "../../../../state/context/authStateContext";
 
 const TopicDetailCard = ({ topic }) => {
     const userId = topic.user[0];
+    const { userLogged } = useContext(AuthStateContext);
+
     const userController = {
         type: "ID",
         payload: userId,
@@ -50,7 +53,7 @@ const TopicDetailCard = ({ topic }) => {
                                     {topic.followers.length}
                                 </p>
                             </div>
-                            <BtnFollow page="card" />
+                            {userLogged.loggedIn && <BtnFollow page="card" />}
                         </div>
                     </figure>
                     <picture className="topic-card__background">
