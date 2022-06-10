@@ -13,17 +13,26 @@
 @import "./components/core/userForm/userForm.scss";
 @import "./components/core/logoutModalSide/LogoutModalSide.scss";
 
-// Components
-@import "./pages/home/components/familyTopicCard/familyTopicCard.scss";
-@import "./pages/familyTopicDetail/components/topicDetailCard/topicDetailCard.scss";
-@import "./pages/familyTopicDetail/components/familyHeader/familyHeader.scss";
-@import "./pages/topicDetail/components/topicHeader/topicHeader.scss";
-@import "./pages/topicDetail/components/comment/comment.scss";
-@import "./pages/userProfile/components/userHeader/userHeader.scss";
-@import "./pages/userProfile/components/userTopic/userTopic.scss";
-@import "./pages/userProfile/components/modalAvatar/modalAvatar.scss";
-
 // Components Share
 @import "./components/shared/button-follow/btnFollow.scss";
 @import "./components/shared/button-comment/btnComment.scss";
 @import "./components/shared/button-repply/buttonReply.scss";
+
+// Components
+// Home
+@import "./pages/home/components/familyTopicCard/familyTopicCard.scss";
+
+// Family Topic Detail
+@import "./pages/familyTopicDetail/components/topicDetailCard/topicDetailCard.scss";
+@import "./pages/familyTopicDetail/components/familyHeader/familyHeader.scss";
+
+// Topic Detail
+@import "./pages/topicDetail/components/topicHeader/topicHeader.scss";
+@import "./pages/topicDetail/components/comment/comment.scss";
+@import "./pages/topicDetail/components/modalAddComment/modalAddComment.scss";
+
+// User Profile
+@import "./pages/userProfile/components/modalAvatar/modalAvatar.scss";
+@import "./pages/userProfile/components/userHeader/userHeader.scss";
+@import "./pages/userProfile/components/userTopic/userTopic.scss";
+@import "./pages/userProfile/components/modalAvatar/modalAvatar.scss";

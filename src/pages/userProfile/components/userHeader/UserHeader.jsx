@@ -21,7 +21,6 @@ const UserHeader = ({ userDetail, showTopics, showModal }) => {
 
     const clickOnTopics = () => {
         showTopics(userDetail.topics);
-
         memoizedValue === "topic" ? setWhoClicked("") : setWhoClicked("topic");
     };
 

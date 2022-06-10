@@ -6,7 +6,7 @@ import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { useToggleComment } from "../../../../customHooks/useToggleComment";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 
-const Comment = ({ comment, isComment }) => {
+const Comment = ({ comment, isComment, showModalFunction }) => {
     const { user, reply, isLoaded } = useToggleComment(isComment, comment);
     const { userLogged } = useContext(AuthStateContext);
 
@@ -56,7 +56,12 @@ const Comment = ({ comment, isComment }) => {
                         >
                             {isComment ? comment.content : reply.content}
                         </p>
-                        {isComment && userLogged.loggedIn && <ButtonRepply />}
+                        {isComment && userLogged.loggedIn && (
+                            <ButtonRepply
+                                showModalFunction={showModalFunction}
+                                commentId={comment.id}
+                            />
+                        )}
                         {isComment && (
                             <div className="comment__content--replies">
                                 <FontAwesomeIcon

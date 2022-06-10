@@ -6,8 +6,9 @@ import BtnComment from "../../../../components/shared/button-comment/BtnComment"
 import { Link } from "react-router-dom";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 
-const TopicHeader = ({ topic, owner }) => {
+const TopicHeader = ({ topic, owner, showModalFunction }) => {
     const { userLogged } = useContext(AuthStateContext);
+
     return (
         <>
             <picture className="topic__header">
@@ -46,7 +47,10 @@ const TopicHeader = ({ topic, owner }) => {
                 <div className="topic__header-card--buttons">
                     {userLogged.loggedIn && (
                         <>
-                            <BtnComment />
+                            <BtnComment
+                                showModalFunction={showModalFunction}
+                                topicTitle={topic.title}
+                            />
                             <BtnFollow page="topic" />
                         </>
                     )}
