@@ -42,11 +42,12 @@ export function getFamilyList() {
 }
 
 export function getFamilyDetail(id) {
+    console.log(2);
     return async (dispatch) => {
         dispatch(actionGetFamily());
         try {
             const familyDetail = await serviceGetFamilyDetail(id);
-
+            console.log("hola", 1);
             dispatch(actionGetFamilyDetailOk(familyDetail));
         } catch (error) {
             console.log(error);

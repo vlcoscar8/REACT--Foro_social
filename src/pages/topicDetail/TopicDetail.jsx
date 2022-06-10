@@ -11,10 +11,10 @@ import TopicHeader from "./components/topicHeader/TopicHeader";
 
 const TopicDetail = () => {
     const { id } = useParams();
-
     const dispatch = useDispatch();
     const { topicDetail, done } = useTopicDetail(id);
     const { topicUser, topicComments } = useSelector((state) => state.topic);
+    window.scrollTo(0, 0);
 
     useEffect(() => {
         done && dispatch(getTopicUser(topicDetail));

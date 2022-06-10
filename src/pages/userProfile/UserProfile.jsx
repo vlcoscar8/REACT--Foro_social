@@ -11,6 +11,7 @@ const UserProfile = () => {
     const [topics, setTopics] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [modal, setModal] = useState(false);
+    window.scrollTo(0, 0);
 
     const userController = {
         type: "name",

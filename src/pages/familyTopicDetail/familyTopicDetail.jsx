@@ -7,11 +7,12 @@ import TopicDetailCard from "./components/topicDetailCard/TopicDetailCard";
 
 const FamilyTopicDetail = () => {
     const { id } = useParams();
-    const { familyDetail, loading, error } = useFamilyDetail(id);
+    const { familyDetail, error } = useFamilyDetail(id);
+    window.scrollTo(0, 0);
 
     return (
         <>
-            {!loading && familyDetail ? (
+            {familyDetail.length > 0 ? (
                 <section className="family">
                     <FamilyHeader
                         logo={familyDetail[0].logo}
