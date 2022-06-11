@@ -60,7 +60,7 @@ const UserHeader = ({ userDetail, username, showTopics, showModal }) => {
                         alt="user avatar"
                         className="img"
                     />
-                    <h2 className="username">{userDetail.username}</h2>
+                    <h2 className="username">{username}</h2>
                 </div>
                 {visibility && (
                     <div className="user-header__user--coins">

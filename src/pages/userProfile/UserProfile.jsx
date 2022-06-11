@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ModalAvatar from "./components/modalAvatar/ModalAvatar";
 import UserHeader from "./components/userHeader/UserHeader";
 import UserTopic from "./components/userTopic/UserTopic";
 import Loading from "../../components/shared/loading/Loading";
 import { serviceGetUserDetail } from "../../state/services/user.services";
+import ButtonTopic from "../../components/shared/button-topic/ButtonTopic";
 
 const UserProfile = () => {
     const { username } = useParams();
@@ -55,7 +56,7 @@ const UserProfile = () => {
                             <UserTopic topic={topic} key={topic} />
                         ))
                     ) : (
-                        <h2>Interesting...</h2>
+                        <ButtonTopic username={username} />
                     )}
                     <ModalAvatar
                         userDetail={userDetail}
