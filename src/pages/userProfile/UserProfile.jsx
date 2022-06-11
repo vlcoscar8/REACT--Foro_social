@@ -1,23 +1,32 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ModalAvatar from "./components/modalAvatar/ModalAvatar";
 import UserHeader from "./components/userHeader/UserHeader";
 import UserTopic from "./components/userTopic/UserTopic";
-import useUserDetail from "../../customHooks/useUserDetail";
 import Loading from "../../components/shared/loading/Loading";
+import { serviceGetUserDetail } from "../../state/services/user.services";
 
 const UserProfile = () => {
     const { username } = useParams();
     const [topics, setTopics] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [modal, setModal] = useState(false);
+    const [userDetail, setUserDetail] = useState();
     window.scrollTo(0, 0);
 
     const userController = {
         type: "name",
         payload: username,
     };
-    const { userDetail, loading } = useUserDetail(userController);
+
+    const setUserFetched = async () => {
+        const data = await serviceGetUserDetail(userController);
+        setUserDetail(data);
+    };
+
+    useEffect(() => {
+        setUserFetched();
+    }, []);
 
     const memoizedTopicsValue = useCallback(topics, [topics]);
 
@@ -33,10 +42,11 @@ const UserProfile = () => {
 
     return (
         <>
-            {!loading && userDetail.length !== 0 ? (
+            {userDetail ? (
                 <section className="user-profile">
                     <UserHeader
                         userDetail={userDetail}
+                        username={username}
                         showTopics={showTopics}
                         showModal={showModal}
                     />

@@ -12,7 +12,7 @@ const ModalAddComment = ({
     keyComment,
     topicDetail,
 }) => {
-    const { userLogged } = useContext(AuthStateContext);
+    const { userLogged, userData } = useContext(AuthStateContext);
     const [bodyRequest, setBodyRequest] = useState();
 
     const dispatch = useDispatch();
@@ -61,14 +61,25 @@ const ModalAddComment = ({
                 <button onClick={handleShowModal} className="btn__close">
                     <FontAwesomeIcon icon={faXmark} className="icon" />
                 </button>
+                <div className="modal-comment__info">
+                    <h2 className="modal-comment__info--username">
+                        Hi {userData.username} 😊
+                    </h2>
+                    <p className="modal-comment__info--topic">
+                        {topicDetail[0].title}
+                    </p>
+                </div>
+                <h2 className="modal-comment__title">
+                    Write your {commentType}:
+                </h2>
                 <form className="modal-comment__form" onSubmit={sendData}>
                     <label>
-                        <p>Content</p>
                         <textarea
                             name="textarea"
                             rows="10"
                             cols="50"
                             onChange={handleInputChange}
+                            placeholder="Maximum 200 characters"
                         />
                     </label>
                     <button className="modal-comment__form--btn" type="submit">

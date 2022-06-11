@@ -4,17 +4,10 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ModalLogin from "../modalLogin/ModalLogin";
 import { AuthStateContext } from "../../../state/context/authStateContext";
-import useUserDetail from "../../../customHooks/useUserDetail";
 
 const Header = () => {
     const [modalActive, setModalActive] = useState(false);
-    const { userLogged } = useContext(AuthStateContext);
-
-    const userController = {
-        type: "ID",
-        payload: userLogged.userId,
-    };
-    const { userDetail } = useUserDetail(userController);
+    const { userLogged, userData } = useContext(AuthStateContext);
 
     const showModal = () => {
         setModalActive(!modalActive);
@@ -36,7 +29,7 @@ const Header = () => {
                 )}
                 <div className="header__nav--buttons">
                     {userLogged.loggedIn && (
-                        <Link to={`/user/${userDetail.username}`}>
+                        <Link to={`/user/${userData.username}`}>
                             <button className="btn login">View Profile</button>
                         </Link>
                     )}

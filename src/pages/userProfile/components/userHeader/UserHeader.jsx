@@ -3,27 +3,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 
-const UserHeader = ({ userDetail, showTopics, showModal }) => {
+const UserHeader = ({ userDetail, username, showTopics, showModal }) => {
     const [whoClicked, setWhoClicked] = useState("");
     const [visibility, setVisibility] = useState(false);
+    const [user, setUser] = useState();
+    const { userLogged, userData } = useContext(AuthStateContext);
 
-    const { userData, userLogged } = useContext(AuthStateContext);
+    // Set visibility of the user settings depending on the user logged
+    useEffect(() => {
+        setUser(username);
+    }, [username]);
 
     useEffect(() => {
-        if (userLogged.loggedIn && userData.username === userDetail.username) {
+        if (userLogged.loggedIn && user === userData.username) {
             setVisibility(true);
         } else {
             setVisibility(false);
         }
-    }, [userLogged, userData]);
+    }, [userLogged, user, userData]);
 
+    // Toggle buttons to see the topics and the followed topics
     const memoizedValue = useCallback(whoClicked, [whoClicked]);
-
     const clickOnTopics = () => {
         showTopics(userDetail.topics);
         memoizedValue === "topic" ? setWhoClicked("") : setWhoClicked("topic");
     };
-
     const clickOnFollow = () => {
         showTopics(userDetail.topicsFollowing);
         memoizedValue === "follow"

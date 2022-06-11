@@ -112,6 +112,9 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
                     className="login-form__label--icon"
                 />
             </label>
+            {showError && (
+                <p className="login-form__error">{userLogged.error} </p>
+            )}
             <button type="submit" className="login-form__btn">
                 {!showRegister ? "Log in" : "Sign up"}
             </button>
@@ -122,9 +125,6 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
                 >
                     Not registered yet?
                 </p>
-            )}
-            {showError && (
-                <p className="login-form__error">{userLogged.error} </p>
             )}
         </form>
     );

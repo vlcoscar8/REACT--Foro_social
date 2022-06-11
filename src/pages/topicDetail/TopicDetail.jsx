@@ -14,10 +14,12 @@ const TopicDetail = () => {
     const { id } = useParams();
     const [showModal, setShowModal] = useState(false);
     const [commentType, setCommentType] = useState();
-    const [keyComment, setKeyComment] = useState("hola");
-    const dispatch = useDispatch();
+    const [keyComment, setKeyComment] = useState();
+
+    // Redux state modifications
     const { topicDetail, done } = useTopicDetail(id);
     const { topicUser, topicComments } = useSelector((state) => state.topic);
+    const dispatch = useDispatch();
     window.scrollTo(0, 0);
 
     const showModalFunction = (value, type, key) => {

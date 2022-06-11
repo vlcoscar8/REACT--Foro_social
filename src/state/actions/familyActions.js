@@ -42,7 +42,6 @@ export function getFamilyList() {
 }
 
 export function getFamilyDetail(id) {
-    console.log(2);
     return async (dispatch) => {
         dispatch(actionGetFamily());
         try {
