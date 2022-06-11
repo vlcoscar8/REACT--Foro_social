@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthStateContext } from "../../../state/context/authStateContext";
 
-const ButtonTopic = ({ username }) => {
+const ButtonTopic = ({ username, showModalTopic }) => {
     const [userName, setUserName] = useState();
     const { userData, userLogged } = useContext(AuthStateContext);
 
@@ -9,10 +9,14 @@ const ButtonTopic = ({ username }) => {
         setUserName(username);
     }, [username, userLogged]);
 
+    const handleClickButton = () => {
+        showModalTopic(true);
+    };
+
     return (
         <>
             {userLogged.loggedIn && userData.username === userName && (
-                <button>CreateTopic</button>
+                <button onClick={handleClickButton}>CreateTopic</button>
             )}
         </>
     );
