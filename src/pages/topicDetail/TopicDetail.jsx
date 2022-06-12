@@ -9,6 +9,7 @@ import useTopicDetail from "../../customHooks/useTopicDetail";
 import Comment from "./components/comment/Comment";
 import TopicHeader from "./components/topicHeader/TopicHeader";
 import ModalAddComment from "./components/modalAddComment/ModalAddComment";
+import { faPersonMilitaryToPerson } from "@fortawesome/free-solid-svg-icons";
 
 const TopicDetail = () => {
     const { id } = useParams();

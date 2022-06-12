@@ -7,8 +7,6 @@ import { environment } from "../../../../environment/environment";
 const UserTopic = ({ topic }) => {
     const [topicData, setTopicData] = useState();
 
-    console.log(topic);
-
     useEffect(() => {
         try {
             fetch(`${environment.API_URL}/topic/${topic}`)

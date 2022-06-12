@@ -12,8 +12,8 @@ export default function familyReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case actions.GET_FAMILY:
             return {
-                familyList: "",
-                familyDetail: "",
+                familyList: [],
+                familyDetail: [],
                 loading: true,
                 error: false,
                 done: false,

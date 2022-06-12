@@ -29,7 +29,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         setUserFetched();
-    }, []);
+    }, [modalTopic, modal]);
 
     const memoizedTopicsValue = useCallback(topics, [topics]);
 
@@ -57,16 +57,18 @@ const UserProfile = () => {
                         showTopics={showTopics}
                         showModal={showModal}
                     />
-                    {showInfo ? (
-                        topics.map((topic) => (
-                            <UserTopic topic={topic} key={topic} />
-                        ))
-                    ) : (
-                        <ButtonTopic
-                            username={username}
-                            showModalTopic={showModalTopic}
-                        />
-                    )}
+                    <div className="user-profile__topics">
+                        {showInfo ? (
+                            topics.map((topic) => (
+                                <UserTopic topic={topic} key={topic} />
+                            ))
+                        ) : (
+                            <ButtonTopic
+                                username={username}
+                                showModalTopic={showModalTopic}
+                            />
+                        )}
+                    </div>
                     <ModalTopic
                         showModalTopic={showModalTopic}
                         modalTopic={modalTopic}

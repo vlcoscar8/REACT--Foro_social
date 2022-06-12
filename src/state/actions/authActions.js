@@ -66,7 +66,6 @@ export const logoutUserFunction = async (dispatch) => {
 
         dispatch(actionLogoutOk());
         localStorage.clear();
-        console.log(window.localStorage.getItem("userId"));
 
         return data;
     } catch (error) {
