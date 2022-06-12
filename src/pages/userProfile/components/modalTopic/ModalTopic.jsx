@@ -76,11 +76,7 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
                                                 className="input"
                                                 required
                                             >
-                                                <option
-                                                    value=""
-                                                    selected
-                                                    disabled
-                                                >
+                                                <option value="" disabled>
                                                     Family options
                                                 </option>
                                                 {familyList.map((el) => (

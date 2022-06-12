@@ -66,6 +66,7 @@
             width: 50rem;
             border-radius: 3rem;
             background-color: white;
+            max-width: 95%;
 
             .input {
                 width: 80%;
@@ -85,9 +86,10 @@
             .label-file {
                 border: 1px solid #ccc;
                 display: inline-block;
-                padding: 1rem 10rem;
+                padding: 1rem 5rem;
                 cursor: pointer;
                 margin-top: -2rem;
+                width: 50%;
 
                 &:hover {
                     background-color: rgb(232, 232, 232);

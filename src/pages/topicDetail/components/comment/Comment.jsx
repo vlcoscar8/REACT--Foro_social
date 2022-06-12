@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { useToggleComment } from "../../../../customHooks/useToggleComment";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
+import Loading from "../../../../components/shared/loading/Loading";
 
 const Comment = ({ comment, isComment, showModalFunction }) => {
     const { user, reply, isLoaded } = useToggleComment(isComment, comment);
@@ -76,7 +77,7 @@ const Comment = ({ comment, isComment, showModalFunction }) => {
                     </div>
                 </figure>
             ) : (
-                <h1>Is loading</h1>
+                <Loading />
             )}
         </>
     );

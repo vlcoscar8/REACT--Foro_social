@@ -53,7 +53,13 @@ const TopicDetailCard = ({ topic }) => {
                                     {topic.followers.length}
                                 </p>
                             </div>
-                            {userLogged.loggedIn && <BtnFollow page="card" />}
+                            {userLogged.loggedIn && (
+                                <BtnFollow
+                                    page="card"
+                                    userId={userId}
+                                    topic={topic}
+                                />
+                            )}
                         </div>
                     </figure>
                     <picture className="topic-card__background">

@@ -51,7 +51,11 @@ const TopicHeader = ({ topic, owner, showModalFunction }) => {
                                 showModalFunction={showModalFunction}
                                 topicTitle={topic.title}
                             />
-                            <BtnFollow page="topic" />
+                            <BtnFollow
+                                page="topic"
+                                userId={userLogged.userId}
+                                topic={topic}
+                            />
                         </>
                     )}
                 </div>
