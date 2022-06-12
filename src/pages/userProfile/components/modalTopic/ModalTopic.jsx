@@ -1,4 +1,4 @@
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
@@ -6,13 +6,14 @@ import { convertFormData, postDataToDatabase } from "./formUtils/form.utils";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getFamilyList } from "../../../../state/actions/familyActions";
+import Loading from "../../../../components/shared/loading/Loading";
 
 const INITIAL_STATE = { title: "", familyTopic: "", wallpaper: "" };
 
 const ModalTopic = ({ showModalTopic, modalTopic }) => {
     const { userLogged } = useContext(AuthStateContext);
     const { familyList, done } = useSelector((state) => state.family);
-    const [result, setResult] = useState();
+    const [result, setResult] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
             userLogged.userId,
             userLogged.token
         );
-        setResult(result);
+        result && setResult(true);
     };
 
     const handleChangeInputFile = (event, formik) => {
@@ -54,52 +55,74 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
                         {(formik) => {
                             return (
                                 <>
-                                    <Form>
-                                        <label>Title</label>
-                                        <Field
-                                            id="title"
-                                            name="title"
-                                            type="text"
-                                        />
-                                        <label>
-                                            Choose the family of your topic:
+                                    <Form className="modal-comment__form">
+                                        <label className="modal-comment__form--label">
+                                            Title{" "}
+                                            <Field
+                                                id="title"
+                                                name="title"
+                                                type="text"
+                                                className="input"
+                                                required
+                                            />
                                         </label>
-                                        <Field
-                                            as="select"
-                                            id="familyTopic"
-                                            name="familyTopic"
-                                        >
-                                            {familyList.map((el) => (
+
+                                        <label className="modal-comment__form--label">
+                                            Choose the family of your topic:
+                                            <Field
+                                                as="select"
+                                                id="familyTopic"
+                                                name="familyTopic"
+                                                className="input"
+                                                required
+                                            >
                                                 <option
-                                                    value={el.title}
-                                                    key={el.id}
+                                                    value=""
+                                                    selected
+                                                    disabled
                                                 >
-                                                    {el.title}
+                                                    Family options
                                                 </option>
-                                            ))}
-                                        </Field>
-                                        <label>Wallpaper</label>
-                                        <input
-                                            id="wallpaper"
-                                            name="wallpaper"
-                                            type="file"
-                                            value={undefined}
-                                            onChange={(event) =>
-                                                handleChangeInputFile(
-                                                    event,
-                                                    formik
-                                                )
-                                            }
-                                        />
-                                        <button type="submit">
-                                            Create Topic
-                                        </button>
+                                                {familyList.map((el) => (
+                                                    <option
+                                                        value={el.title}
+                                                        key={el.id}
+                                                    >
+                                                        {el.title}
+                                                    </option>
+                                                ))}
+                                            </Field>
+                                        </label>
+                                        <div className="modal-comment__form--label">
+                                            <p>Wallpaper</p>
+                                            <label className="label-file">
+                                                <FontAwesomeIcon
+                                                    icon={faCamera}
+                                                />
+                                                <input
+                                                    id="wallpaper"
+                                                    name="wallpaper"
+                                                    type="file"
+                                                    className="input-file"
+                                                    required
+                                                    value={undefined}
+                                                    onChange={(event) =>
+                                                        handleChangeInputFile(
+                                                            event,
+                                                            formik
+                                                        )
+                                                    }
+                                                />
+                                            </label>
+                                        </div>
+
+                                        <button type="submit">Submit</button>
                                     </Form>
                                 </>
                             );
                         }}
                     </Formik>
-                    {result && <p>{result}</p>}
+                    {result && <p>Done!</p>}
                 </section>
             )}
 

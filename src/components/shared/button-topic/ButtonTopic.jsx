@@ -16,7 +16,12 @@ const ButtonTopic = ({ username, showModalTopic }) => {
     return (
         <>
             {userLogged.loggedIn && userData.username === userName && (
-                <button onClick={handleClickButton}>CreateTopic</button>
+                <button
+                    className="user-profile__topics--btn"
+                    onClick={handleClickButton}
+                >
+                    CreateTopic
+                </button>
             )}
         </>
     );

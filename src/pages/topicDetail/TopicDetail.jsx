@@ -9,13 +9,13 @@ import useTopicDetail from "../../customHooks/useTopicDetail";
 import Comment from "./components/comment/Comment";
 import TopicHeader from "./components/topicHeader/TopicHeader";
 import ModalAddComment from "./components/modalAddComment/ModalAddComment";
-import { faPersonMilitaryToPerson } from "@fortawesome/free-solid-svg-icons";
 
 const TopicDetail = () => {
     const { id } = useParams();
     const [showModal, setShowModal] = useState(false);
     const [commentType, setCommentType] = useState();
     const [keyComment, setKeyComment] = useState();
+    const [show, setShow] = useState(false);
 
     // Redux state modifications
     const { topicDetail, done } = useTopicDetail(id);
@@ -32,11 +32,14 @@ const TopicDetail = () => {
     useEffect(() => {
         done && dispatch(getTopicUser(topicDetail));
         done && dispatch(getTopicComments(topicDetail));
+        setTimeout(() => {
+            setShow(true);
+        }, 1000);
     }, [dispatch, done, topicDetail]);
 
     return (
         <>
-            {done ? (
+            {show ? (
                 <section className="topic" id="">
                     {showModal && (
                         <ModalAddComment

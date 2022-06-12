@@ -49,8 +49,7 @@ const ModalAddComment = ({
             requestOptions
         )
             .then((res) => res.json())
-            .then((data) => console.log(data))
-            .finally((e) => dispatch(getTopicDetail(topicDetail[0].id)));
+            .then((data) => dispatch(getTopicDetail(topicDetail[0].id)));
 
         showModalFunction(false);
     };
@@ -76,8 +75,6 @@ const ModalAddComment = ({
                     <label>
                         <textarea
                             name="textarea"
-                            rows="10"
-                            cols="50"
                             onChange={handleInputChange}
                             placeholder="Maximum 200 characters"
                         />

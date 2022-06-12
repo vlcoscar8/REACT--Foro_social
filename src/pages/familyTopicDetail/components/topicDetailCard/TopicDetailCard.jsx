@@ -1,26 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import BtnFollow from "../../../../components/shared/button-follow/BtnFollow";
-import useUserDetail from "../../../../customHooks/useUserDetail";
 import Loading from "../../../../components/shared/loading/Loading";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
+import { environment } from "../../../../environment/environment";
 
 const TopicDetailCard = ({ topic }) => {
     const userId = topic.user[0];
+    const [userDetail, setUserDetail] = useState();
     const { userLogged } = useContext(AuthStateContext);
 
-    const userController = {
-        type: "ID",
-        payload: userId,
-    };
-
-    const { userDetail, loading, error } = useUserDetail(userController);
+    useEffect(() => {
+        fetch(`${environment.API_URL}/user/${userId}`)
+            .then((res) => res.json())
+            .then((data) => setUserDetail(data));
+    }, [userId]);
 
     return (
         <>
-            {!loading && userDetail ? (
+            {userDetail ? (
                 <Link to={`/topic/${topic.id}`} className="topic-card">
                     <figure className="topic-card__header">
                         <div className="topic-card__header--user">
@@ -67,7 +67,6 @@ const TopicDetailCard = ({ topic }) => {
             ) : (
                 <Loading />
             )}
-            {error && <h1>Error</h1>}
         </>
     );
 };

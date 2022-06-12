@@ -22,11 +22,7 @@ const Header = () => {
                         className="header__nav--icon"
                     />
                 </Link>
-                {userLogged.loggedIn ? (
-                    <p>Hi {userLogged.userId}</p>
-                ) : (
-                    <p>Welcome!</p>
-                )}
+                {userLogged.loggedIn && <p>Hi {userData.username} 😊</p>}
                 <div className="header__nav--buttons">
                     {userLogged.loggedIn && (
                         <Link to={`/user/${userData.username}`}>

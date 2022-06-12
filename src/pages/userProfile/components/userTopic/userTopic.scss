@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: space-between;
     width: 40rem;
-    height: 8rem;
     background-color: white;
     border: 1px solid orangered;
     border-radius: 3rem;
@@ -17,16 +16,13 @@
         width: 100%;
         text-align: center;
         font-size: 2.3rem;
-        position: absolute;
-        top: -0.4rem;
     }
 
     &__info {
         display: flex;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        bottom: -0.4rem;
+        height: 2rem;
 
         &--icon {
             display: flex;
