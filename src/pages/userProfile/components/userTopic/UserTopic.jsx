@@ -19,8 +19,6 @@ const UserTopic = ({ topic }) => {
         }
     }, [topic]);
 
-    console.log(topicData);
-
     return (
         <>
             {topicData !== undefined ? (

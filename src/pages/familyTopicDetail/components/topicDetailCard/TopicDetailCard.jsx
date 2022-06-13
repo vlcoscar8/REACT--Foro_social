@@ -62,13 +62,6 @@ const TopicDetailCard = ({ topic }) => {
                             )}
                         </div>
                     </figure>
-                    <picture className="topic-card__background">
-                        <img
-                            src={topic.wallpaper}
-                            alt={topic.title + "image"}
-                            className="topic-card__background--img"
-                        />
-                    </picture>
                 </Link>
             ) : (
                 <Loading />

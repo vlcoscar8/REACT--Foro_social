@@ -16,6 +16,8 @@ const TopicDetail = () => {
     const [commentType, setCommentType] = useState();
     const [keyComment, setKeyComment] = useState();
     const [show, setShow] = useState(false);
+    const [filteredComments, setFilteredComments] = useState();
+    const [page, setPage] = useState(0);
 
     // Redux state modifications
     const { topicDetail, done } = useTopicDetail(id);
@@ -37,6 +39,22 @@ const TopicDetail = () => {
         }, 1000);
     }, [dispatch, done, topicDetail]);
 
+    useEffect(() => {
+        const filtered = topicComments.slice(page * 3, page * 3 + 3);
+        setFilteredComments(filtered);
+        console.log(page);
+    }, [topicComments, page]);
+
+    const nextPage = () => {
+        const nextPage = page + 1;
+        setPage(nextPage);
+    };
+
+    const prevPage = () => {
+        const prevPage = page + -1;
+        setPage(prevPage);
+    };
+
     return (
         <>
             {show ? (
@@ -54,7 +72,7 @@ const TopicDetail = () => {
                         owner={topicUser}
                         showModalFunction={showModalFunction}
                     />
-                    {topicComments.map((comment) => {
+                    {filteredComments.map((comment) => {
                         return (
                             <>
                                 <Comment
@@ -76,6 +94,13 @@ const TopicDetail = () => {
                             </>
                         );
                     })}
+                    <div className="topic__pagination">
+                        {page > 0 && <button onClick={prevPage}>Prev</button>}
+                        <p>{page + 1}</p>
+                        {filteredComments.length > 2 && (
+                            <button onClick={nextPage}>Next</button>
+                        )}
+                    </div>
                 </section>
             ) : (
                 <h1>Is loading...</h1>
