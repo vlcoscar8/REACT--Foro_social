@@ -29,7 +29,6 @@ const UserHeader = ({ userDetail, username, showTopics, showModal }) => {
         memoizedValue === "topic" ? setWhoClicked("") : setWhoClicked("topic");
     };
     const clickOnFollow = () => {
-        console.log(userDetail);
         showTopics(userDetail.topicsFollowing);
         memoizedValue === "follow"
             ? setWhoClicked("")

@@ -6,7 +6,6 @@ import { convertFormData, postDataToDatabase } from "./formUtils/form.utils";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getFamilyList } from "../../../../state/actions/familyActions";
-import Loading from "../../../../components/shared/loading/Loading";
 
 const INITIAL_STATE = { title: "", familyTopic: "", wallpaper: "" };
 

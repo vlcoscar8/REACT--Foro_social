@@ -42,7 +42,6 @@ const TopicDetail = () => {
     useEffect(() => {
         const filtered = topicComments.slice(page * 3, page * 3 + 3);
         setFilteredComments(filtered);
-        console.log(page);
     }, [topicComments, page]);
 
     const nextPage = () => {
