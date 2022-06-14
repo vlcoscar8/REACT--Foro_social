@@ -1,14 +1,34 @@
 import { faGem, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AvatarList from "../avatarList/AvatarList";
 import { environment } from "../../../../environment/environment";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
+import { serviceGetUserDetail } from "../../../../state/services/user.services";
 
-const ModalAvatar = ({ showModal, modal }) => {
-    const { userData, userLogged } = useContext(AuthStateContext);
+const ModalAvatar = ({ userDetail, showModal, modal }) => {
+    const { userLogged } = useContext(AuthStateContext);
+    const [userUpdated, setUserUpdated] = useState(userDetail);
+    const [clicked, setClicked] = useState(false);
     const [avatarSelected, setAvatarSelected] = useState();
     const [error, setError] = useState();
+
+    useEffect(() => {
+        setUserFetched();
+        setTimeout(() => {
+            setError(false);
+        }, 3000);
+    }, [clicked]);
+
+    const setUserFetched = async () => {
+        const userController = {
+            type: "ID",
+            payload: userLogged.userId,
+        };
+
+        const data = await serviceGetUserDetail(userController);
+        setUserUpdated(data);
+    };
 
     const handleShowModal = () => {
         showModal(false);
@@ -20,9 +40,10 @@ const ModalAvatar = ({ showModal, modal }) => {
             : setAvatarSelected(avatarDetail);
     };
 
-    const handleEditButton = () => {
+    const handleEditButton = async () => {
+        setClicked(false);
         const body = {
-            avatarId: avatarSelected.id,
+            avatarImg: avatarSelected.img,
         };
 
         const requestOptions = {
@@ -30,6 +51,7 @@ const ModalAvatar = ({ showModal, modal }) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
         };
+
         avatarSelected &&
             avatarSelected.users.includes(userLogged.userId) &&
             fetch(
@@ -37,17 +59,14 @@ const ModalAvatar = ({ showModal, modal }) => {
                 requestOptions
             )
                 .then((res) => res.json())
-                .then((data) => console.log(data));
-
-        avatarSelected &&
-            !avatarSelected.users.includes(userLogged.userId) &&
-            setError("You don't have the avatar yet");
+                .then(() => setClicked(true));
     };
 
-    const handleBuyButton = () => {
+    const handleBuyButton = async () => {
+        setClicked(false);
         const body = {
-            avatarProfile: avatarSelected.img,
-            coins: avatarSelected.price,
+            avatarId: avatarSelected.id,
+            coins: userUpdated.coins - avatarSelected.price,
         };
 
         const requestOptions = {
@@ -63,67 +82,71 @@ const ModalAvatar = ({ showModal, modal }) => {
                 requestOptions
             )
                 .then((res) => res.json())
-                .then((data) => console.log(data));
-
-        avatarSelected &&
-            avatarSelected.users.includes(userLogged.userId) &&
-            setError("Not money enough or you have already the avatar");
+                .then((data) => !data.username && setError("Too expensive"))
+                .then(() => setClicked(true));
     };
 
     return (
         <>
-            <section
-                className={modal ? "modal-avatar" : "modal-avatar no-active"}
-            >
-                <button onClick={handleShowModal} className="btn__close">
-                    <FontAwesomeIcon icon={faXmark} className="icon" />
-                </button>
-                <div className="modal-avatar__image">
-                    <img
-                        src={userData.avatarProfile}
-                        alt="avatar"
-                        className="img"
-                    />
-                    <div className="coins">
-                        <FontAwesomeIcon icon={faGem} className="icon" />
-                        <p>{userData.coins}</p>
-                        <p className="coins__price">
-                            {avatarSelected &&
-                                ` Price: ${avatarSelected.price}`}
-                        </p>
+            {userUpdated && (
+                <section
+                    className={
+                        modal ? "modal-avatar" : "modal-avatar no-active"
+                    }
+                >
+                    <button onClick={handleShowModal} className="btn__close">
+                        <FontAwesomeIcon icon={faXmark} className="icon" />
+                    </button>
+                    <div className="modal-avatar__image">
+                        <img
+                            src={userUpdated.avatarProfile}
+                            alt="avatar"
+                            className="img"
+                        />
+
+                        <div className="coins">
+                            <FontAwesomeIcon icon={faGem} className="icon" />
+                            <p>{userUpdated.coins}</p>
+                            <p className="coins__price">
+                                {avatarSelected &&
+                                    ` Price: ${avatarSelected.price}`}
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="modal-avatar__buttons">
-                    {error && <p>{error}</p>}
-                    <button
-                        className={
-                            avatarSelected &&
-                            avatarSelected.users.includes(userLogged.userId)
-                                ? "modal-avatar__buttons--btn"
-                                : "modal-avatar__buttons--btn disabled"
-                        }
-                        onClick={handleEditButton}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        className={
-                            avatarSelected &&
-                            !avatarSelected.users.includes(userLogged.userId)
-                                ? "modal-avatar__buttons--btn"
-                                : "modal-avatar__buttons--btn disabled"
-                        }
-                        onClick={handleBuyButton}
-                    >
-                        Buy
-                    </button>
-                </div>
-                <AvatarList
-                    userData={userData}
-                    userId={userLogged.userId}
-                    handleSetAvatar={handleSetAvatar}
-                />
-            </section>
+                    <div className="modal-avatar__buttons">
+                        {error && <p>{error}</p>}
+                        <button
+                            className={
+                                avatarSelected &&
+                                avatarSelected.users.includes(userLogged.userId)
+                                    ? "modal-avatar__buttons--btn"
+                                    : "modal-avatar__buttons--btn disabled"
+                            }
+                            onClick={handleEditButton}
+                        >
+                            Edit
+                        </button>
+                        <button
+                            className={
+                                avatarSelected &&
+                                !avatarSelected.users.includes(
+                                    userLogged.userId
+                                )
+                                    ? "modal-avatar__buttons--btn"
+                                    : "modal-avatar__buttons--btn disabled"
+                            }
+                            onClick={handleBuyButton}
+                        >
+                            Buy
+                        </button>
+                    </div>
+                    <AvatarList
+                        userData={userUpdated}
+                        userId={userLogged.userId}
+                        handleSetAvatar={handleSetAvatar}
+                    />
+                </section>
+            )}
             <div
                 className={
                     modal

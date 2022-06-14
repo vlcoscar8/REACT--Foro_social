@@ -9,7 +9,7 @@ const AvatarList = ({ userData, userId, handleSetAvatar }) => {
         fetch(`${environment.API_URL}/avatar/list`)
             .then((res) => res.json())
             .then((data) => setAvatarList(data));
-    }, []);
+    }, [userData]);
 
     const avatarClick = (e) => {
         const avatarId = parseInt(e.target.id);
