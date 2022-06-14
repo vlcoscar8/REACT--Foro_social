@@ -5,6 +5,10 @@ import AvatarList from "../avatarList/AvatarList";
 import { environment } from "../../../../environment/environment";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 import { serviceGetUserDetail } from "../../../../state/services/user.services";
+import {
+    buyAvatarImage,
+    setAvatarProfile,
+} from "./modalAvatar.utils/modalAvatar.utils";
 
 const ModalAvatar = ({ userDetail, showModal, modal }) => {
     const { userLogged } = useContext(AuthStateContext);
@@ -42,48 +46,24 @@ const ModalAvatar = ({ userDetail, showModal, modal }) => {
 
     const handleEditButton = async () => {
         setClicked(false);
-        const body = {
-            avatarImg: avatarSelected.img,
-        };
-
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-        };
 
         avatarSelected &&
             avatarSelected.users.includes(userLogged.userId) &&
-            fetch(
-                `${environment.API_URL}/user/avatar/${userLogged.userId}`,
-                requestOptions
-            )
-                .then((res) => res.json())
-                .then(() => setClicked(true));
+            (await setAvatarProfile(avatarSelected, userLogged));
+
+        setClicked(true);
     };
 
     const handleBuyButton = async () => {
         setClicked(false);
-        const body = {
-            avatarId: avatarSelected.id,
-            coins: userUpdated.coins - avatarSelected.price,
-        };
 
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-        };
-
-        avatarSelected &&
+        const data =
+            avatarSelected &&
             !avatarSelected.users.includes(userLogged.userId) &&
-            fetch(
-                `${environment.API_URL}/user/edit/${userLogged.userId}`,
-                requestOptions
-            )
-                .then((res) => res.json())
-                .then((data) => !data.username && setError("Too expensive"))
-                .then(() => setClicked(true));
+            (await buyAvatarImage(avatarSelected, userUpdated, userLogged));
+
+        !data.username && setError("Too expensive");
+        setClicked(true);
     };
 
     return (
