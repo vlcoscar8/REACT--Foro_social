@@ -63,6 +63,13 @@
                     transition: all 0.4s ease;
                 }
             }
+
+            .disable-clicked {
+                filter: opacity(0.8);
+                width: 13%;
+                border-radius: 50%;
+                cursor: pointer;
+            }
         }
     }
 }

@@ -14,6 +14,38 @@
     align-items: center;
     justify-content: flex-start;
 
+    &__buttons {
+        position: absolute;
+        right: 11rem;
+        top: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        &--btn {
+            padding: 1.3rem 5rem;
+            font-size: 1.6rem;
+            border: none;
+            border-radius: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: orangered;
+
+            &:hover {
+                background-color: rgb(255, 99, 42);
+                transition: all 0.2s ease;
+            }
+        }
+
+        .disabled {
+            cursor: auto;
+            background-color: rgb(230, 230, 230);
+        }
+    }
+
     &__image {
         position: absolute;
         top: 3rem;
@@ -36,6 +68,10 @@
             gap: 1rem;
             font-size: 2rem;
             font-weight: 600;
+
+            &__price {
+                color: red;
+            }
 
             .icon {
                 color: orangered;
