@@ -24,6 +24,14 @@
         justify-content: center;
         gap: 1rem;
 
+        p {
+            position: absolute;
+            top: 9rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: red;
+        }
+
         &--btn {
             padding: 1.3rem 5rem;
             font-size: 1.6rem;
