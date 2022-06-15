@@ -6,6 +6,7 @@ import { convertFormData, postDataToDatabase } from "./formUtils/form.utils";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getFamilyList } from "../../../../state/actions/familyActions";
+import PreviewImage from "./previewImage/PreviewImage";
 
 const INITIAL_STATE = { title: "", familyTopic: "", wallpaper: "" };
 
@@ -13,6 +14,7 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
     const { userLogged } = useContext(AuthStateContext);
     const { familyList, done } = useSelector((state) => state.family);
     const [result, setResult] = useState(false);
+    const [file, setFile] = useState();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -36,7 +38,9 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
     };
 
     const handleChangeInputFile = (event, formik) => {
-        formik.setFieldValue("wallpaper", event.currentTarget.files[0]);
+        const file = event.currentTarget.files[0];
+        formik.setFieldValue("wallpaper", file);
+        setFile(file);
     };
 
     return (
@@ -91,9 +95,13 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
                                         <div className="modal-comment__form--label">
                                             <p>Wallpaper</p>
                                             <label className="label-file">
-                                                <FontAwesomeIcon
-                                                    icon={faCamera}
-                                                />
+                                                {!file ? (
+                                                    <FontAwesomeIcon
+                                                        icon={faCamera}
+                                                    />
+                                                ) : (
+                                                    <PreviewImage file={file} />
+                                                )}
                                                 <input
                                                     id="wallpaper"
                                                     name="wallpaper"

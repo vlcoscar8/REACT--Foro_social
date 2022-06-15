@@ -51,12 +51,14 @@ const TopicHeader = ({ topic, owner, showModalFunction }) => {
                                 showModalFunction={showModalFunction}
                                 topicTitle={topic.title}
                             />
-                            <BtnFollow
-                                page="topic"
-                                userId={userLogged.userId}
-                                topic={topic}
-                                userData={userData}
-                            />
+                            {!userData.topics.includes(topic.id) && (
+                                <BtnFollow
+                                    page="topic"
+                                    userId={userLogged.userId}
+                                    topic={topic}
+                                    userData={userData}
+                                />
+                            )}
                         </>
                     )}
                 </div>

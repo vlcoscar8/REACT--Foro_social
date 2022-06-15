@@ -10,7 +10,6 @@ import { environment } from "../../../../environment/environment";
 const TopicDetailCard = ({ topic }) => {
     const userId = topic.user[0];
     const [userDetail, setUserDetail] = useState();
-    const { userLogged } = useContext(AuthStateContext);
 
     useEffect(() => {
         fetch(`${environment.API_URL}/user/${userId}`)
@@ -53,13 +52,6 @@ const TopicDetailCard = ({ topic }) => {
                                     {topic.followers.length}
                                 </p>
                             </div>
-                            {userLogged.loggedIn && (
-                                <BtnFollow
-                                    page="card"
-                                    userId={userId}
-                                    topic={topic}
-                                />
-                            )}
                         </div>
                     </figure>
                 </Link>
