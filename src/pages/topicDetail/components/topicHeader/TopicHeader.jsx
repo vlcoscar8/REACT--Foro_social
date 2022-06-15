@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 
 const TopicHeader = ({ topic, owner, showModalFunction }) => {
-    const { userLogged } = useContext(AuthStateContext);
+    const { userLogged, userData } = useContext(AuthStateContext);
 
     return (
         <>
@@ -55,6 +55,7 @@ const TopicHeader = ({ topic, owner, showModalFunction }) => {
                                 page="topic"
                                 userId={userLogged.userId}
                                 topic={topic}
+                                userData={userData}
                             />
                         </>
                     )}

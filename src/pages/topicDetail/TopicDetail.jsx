@@ -25,12 +25,14 @@ const TopicDetail = () => {
     const dispatch = useDispatch();
     window.scrollTo(0, 0);
 
+    // Manage the modal between comment or reply
     const showModalFunction = (value, type, key) => {
         setShowModal(value);
         setCommentType(type);
         setKeyComment(key);
     };
 
+    // Update the topic detail comments and topic detail user 
     useEffect(() => {
         done && dispatch(getTopicUser(topicDetail));
         done && dispatch(getTopicComments(topicDetail));
@@ -39,6 +41,8 @@ const TopicDetail = () => {
         }, 1000);
     }, [dispatch, done, topicDetail]);
 
+
+    // Pagination
     useEffect(() => {
         const filtered = topicComments.slice(page * 3, page * 3 + 3);
         setFilteredComments(filtered);

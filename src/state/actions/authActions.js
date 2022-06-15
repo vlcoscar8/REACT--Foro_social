@@ -33,23 +33,25 @@ export const loginUserFunction = async (body, dispatch) => {
     dispatch(actionLogin());
 
     try {
-        const response = await fetch(
-            `${environment.API_URL}/user/login`,
-            requestOptions
-        );
-        const data = await response.json();
-
-        if (data === "The email or password is incorrect") {
-            dispatch(actionloginNok(data));
-            return data;
-        }
-
         if (!body.username) {
+            const response = await fetch(
+                `${environment.API_URL}/user/login`,
+                requestOptions
+            );
+            const data = await response.json();
+
+            if (data === "The email or password is incorrect") {
+                dispatch(actionloginNok(data));
+                return data;
+            }
+
             dispatch(actionLoginOk(data));
             window.localStorage.setItem("userId", data.userId);
             window.localStorage.setItem("token", data.token);
             return data;
         }
+
+        await fetch(`${environment.API_URL}/user/register`, requestOptions);
     } catch (error) {
         console.log(error);
         dispatch(actionloginNok());

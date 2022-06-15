@@ -14,7 +14,6 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
     const [form, setForm] = useState(INITIAL_STATE);
     const [submit, setSubmit] = useState(false);
     const [showError, setShowError] = useState(false);
-    // const { fetchUser, userData } = useContext(ForoContext);
     const { dispatch, userLogged } = useContext(AuthStateContext);
 
     useEffect(() => {
