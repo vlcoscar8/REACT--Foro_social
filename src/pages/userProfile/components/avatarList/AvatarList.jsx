@@ -11,6 +11,7 @@ const AvatarList = ({ userData, userId, handleSetAvatar }) => {
             .then((data) => setAvatarList(data));
     }, [userData]);
 
+    // Active or disbale the avatar chosen and pass the avatar detail infomation to buy or edit
     const avatarClick = (e) => {
         const avatarId = parseInt(e.target.id);
         avatarIdClicked === avatarId

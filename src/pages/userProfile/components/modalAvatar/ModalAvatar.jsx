@@ -38,12 +38,14 @@ const ModalAvatar = ({ userDetail, showModal, modal }) => {
         showModal(false);
     };
 
+    // Select the avatar and deselect if the user click the same avatar
     const handleSetAvatar = (avatarDetail) => {
         avatarSelected && avatarSelected.id === avatarDetail.id
             ? setAvatarSelected()
             : setAvatarSelected(avatarDetail);
     };
 
+    // If the user has the avatar then the user can edit his avatar profile
     const handleEditButton = async () => {
         setClicked(false);
 
@@ -54,6 +56,7 @@ const ModalAvatar = ({ userDetail, showModal, modal }) => {
         setClicked(true);
     };
 
+    // If the user doesn't have the avatar and have coins to buy, then the user can buy
     const handleBuyButton = async () => {
         setClicked(false);
 
@@ -62,7 +65,7 @@ const ModalAvatar = ({ userDetail, showModal, modal }) => {
             !avatarSelected.users.includes(userLogged.userId) &&
             (await buyAvatarImage(avatarSelected, userUpdated, userLogged));
 
-        !data.username && setError("Too expensive");
+        !data.username && setError("You need more money");
         setClicked(true);
     };
 
