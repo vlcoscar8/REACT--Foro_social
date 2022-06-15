@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
 const Loading = () => {
-  return (
-    <div>Loading</div>
-  )
-}
+    return (
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    );
+};
 
-export default Loading
+export default Loading;

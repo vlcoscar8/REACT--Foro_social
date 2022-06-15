@@ -2,6 +2,7 @@ import { faMessage, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loading from "../../../../components/shared/loading/Loading";
 import { environment } from "../../../../environment/environment";
 
 const UserTopic = ({ topic }) => {
@@ -46,7 +47,7 @@ const UserTopic = ({ topic }) => {
                     </div>
                 </Link>
             ) : (
-                <h1>Loading...</h1>
+                <Loading />
             )}
         </>
     );

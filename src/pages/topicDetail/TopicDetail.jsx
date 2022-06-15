@@ -9,6 +9,7 @@ import useTopicDetail from "../../customHooks/useTopicDetail";
 import Comment from "./components/comment/Comment";
 import TopicHeader from "./components/topicHeader/TopicHeader";
 import ModalAddComment from "./components/modalAddComment/ModalAddComment";
+import Loading from "../../components/shared/loading/Loading";
 
 const TopicDetail = () => {
     const { id } = useParams();
@@ -105,7 +106,7 @@ const TopicDetail = () => {
                     </div>
                 </section>
             ) : (
-                <h1>Is loading...</h1>
+                <Loading />
             )}
         </>
     );
