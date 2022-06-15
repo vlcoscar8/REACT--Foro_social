@@ -14,6 +14,7 @@ const BtnFollow = ({ userId, page, topic, userData }) => {
         setUserFetched();
     }, [clicked]);
 
+    // Update user data redux state
     const setUserFetched = async () => {
         const userController = {
             type: "ID",
@@ -24,6 +25,7 @@ const BtnFollow = ({ userId, page, topic, userData }) => {
         setUserUpdated(data);
     };
 
+    // BUtton follow / unfollow function depending on the user topic followed
     const handleButtonFollow = () => {
         setClicked(false);
         const body = {

@@ -17,25 +17,26 @@ const UserProfile = () => {
     const [userDetail, setUserDetail] = useState();
     window.scrollTo(0, 0);
 
-    const userController = {
-        type: "name",
-        payload: username,
-    };
-
-    const setUserFetched = async () => {
-        const data = await serviceGetUserDetail(userController);
-        setUserDetail(data);
-    };
-
+    // Update the user detail when the modal avatar or modal topic is showed or hide
     useEffect(() => {
         setUserFetched();
     }, [modalTopic, modal]);
 
+    // Update the user detail used in the page by the username form params
+    const setUserFetched = async () => {
+        const userController = {
+            type: "name",
+            payload: username,
+        };
+        const data = await serviceGetUserDetail(userController);
+        setUserDetail(data);
+    };
+
+    // Toggle functions to show the topics created or the followed topics
     const memoizedTopicsValue = useCallback(topics, [topics]);
 
     const showTopics = (info) => {
         setTopics(info);
-
         memoizedTopicsValue === info ? setShowInfo(false) : setShowInfo(true);
     };
 

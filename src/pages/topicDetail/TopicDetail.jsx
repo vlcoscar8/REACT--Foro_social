@@ -32,7 +32,7 @@ const TopicDetail = () => {
         setKeyComment(key);
     };
 
-    // Update the topic detail comments and topic detail user 
+    // Update the topic detail comments and topic detail user  in redux state
     useEffect(() => {
         done && dispatch(getTopicUser(topicDetail));
         done && dispatch(getTopicComments(topicDetail));
@@ -40,7 +40,6 @@ const TopicDetail = () => {
             setShow(true);
         }, 1000);
     }, [dispatch, done, topicDetail]);
-
 
     // Pagination
     useEffect(() => {

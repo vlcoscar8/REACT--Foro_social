@@ -14,13 +14,14 @@ const ModalAddComment = ({
 }) => {
     const { userLogged, userData } = useContext(AuthStateContext);
     const [bodyRequest, setBodyRequest] = useState();
-
     const dispatch = useDispatch();
 
+    // Hide the comment modal
     const handleShowModal = () => {
         showModalFunction(false);
     };
 
+    // Toggle the body request depending on the button clicked between comment or reply
     const handleInputChange = (e) => {
         const body = {
             content: e.target.value,
@@ -30,11 +31,13 @@ const ModalAddComment = ({
         setBodyRequest(body);
     };
 
+    // Call the fetch function with the body request setted before depending on the comment or reply button
     const sendData = (e) => {
         e.preventDefault();
         addCommentOrReplyFunction(userLogged.userId, bodyRequest);
     };
 
+    // Fetch function to post the comment or reply data
     const addCommentOrReplyFunction = (userId, bodyRequest) => {
         const requestOptions = {
             method: "POST",
@@ -49,7 +52,7 @@ const ModalAddComment = ({
             requestOptions
         )
             .then((res) => res.json())
-            .then((data) => dispatch(getTopicDetail(topicDetail[0].id)));
+            .then(() => dispatch(getTopicDetail(topicDetail[0].id)));
 
         showModalFunction(false);
     };

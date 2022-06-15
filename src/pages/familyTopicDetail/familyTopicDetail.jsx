@@ -7,6 +7,8 @@ import TopicDetailCard from "./components/topicDetailCard/TopicDetailCard";
 
 const FamilyTopicDetail = () => {
     const { id } = useParams();
+
+    // Set the family detail state with redux by the id from params
     const { familyDetail, error } = useFamilyDetail(id);
     window.scrollTo(0, 0);
 

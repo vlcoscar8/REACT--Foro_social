@@ -15,6 +15,7 @@ const Home = () => {
         setFamilyListFiltered(familyList);
     }, [familyList]);
 
+    // Search filter function
     const handleChangeInput = (e) => {
         setFamilyListFiltered(
             familyList.filter((el) =>
@@ -25,6 +26,7 @@ const Home = () => {
         );
     };
 
+    // Sort function depending on the numbers of topics
     const handleSort = () => {
         setSort(!sort);
         setReset(false);
@@ -35,6 +37,7 @@ const Home = () => {
         );
     };
 
+    // Reset list function by id
     const handleReset = () => {
         setSort(false);
         setReset(true);
