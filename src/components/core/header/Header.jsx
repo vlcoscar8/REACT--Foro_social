@@ -1,13 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhoenixSquadron } from "@fortawesome/free-brands-svg-icons";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ModalLogin from "../modalLogin/ModalLogin";
 import { AuthStateContext } from "../../../state/context/authStateContext";
+import {
+    faArrowRight,
+    faRightFromBracket,
+    faRightToBracket,
+    faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
     const [modalActive, setModalActive] = useState(false);
     const { userLogged, userData } = useContext(AuthStateContext);
+    const [widthWindow, setWidthWindow] = useState(window.innerWidth);
+
+    let resizeWindow = () => {
+        setWidthWindow(window.innerWidth);
+    };
+
+    useEffect(() => {
+        resizeWindow();
+        window.addEventListener("resize", resizeWindow);
+        return () => window.removeEventListener("resize", resizeWindow);
+    }, []);
 
     const showModal = () => {
         setModalActive(!modalActive);
@@ -26,17 +43,41 @@ const Header = () => {
                 <div className="header__nav--buttons">
                     {userLogged.loggedIn && (
                         <Link to={`/user/${userData.username}`}>
-                            <button className="btn login">View Profile</button>
+                            <button className="btn login">
+                                {widthWindow > 730 ? (
+                                    "View Profile"
+                                ) : (
+                                    <FontAwesomeIcon
+                                        icon={faUser}
+                                        className="icon"
+                                    />
+                                )}
+                            </button>
                         </Link>
                     )}
-                    <button
-                        onClick={showModal}
-                        className={`btn ${
-                            userLogged.loggedIn ? "logout" : "login"
-                        }`}
-                    >
-                        {!userLogged.loggedIn ? "Login" : "Logout"}
-                    </button>
+                    {!userLogged.loggedIn ? (
+                        <button onClick={showModal} className="btn login">
+                            {widthWindow > 730 ? (
+                                "Login"
+                            ) : (
+                                <FontAwesomeIcon
+                                    icon={faRightToBracket}
+                                    className="icon"
+                                />
+                            )}
+                        </button>
+                    ) : (
+                        <button onClick={showModal} className="btn logout">
+                            {widthWindow > 730 ? (
+                                "Logout"
+                            ) : (
+                                <FontAwesomeIcon
+                                    icon={faRightFromBracket}
+                                    className="icon"
+                                />
+                            )}
+                        </button>
+                    )}
                 </div>
             </nav>
             <ModalLogin modalActive={modalActive} showModal={showModal} />

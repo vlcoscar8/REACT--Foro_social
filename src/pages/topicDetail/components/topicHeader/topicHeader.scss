@@ -33,6 +33,10 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         cursor: pointer;
 
+        @include desktop {
+            margin-left: 17%;
+        }
+
         .img {
             height: 100%;
             cursor: pointer;
@@ -51,7 +55,7 @@
     width: 90%;
     max-width: 70rem;
     min-height: 10rem;
-    max-height: 18rem;
+    max-height: 24rem;
     padding: 0 2rem;
     gap: 1rem;
     background-color: white;

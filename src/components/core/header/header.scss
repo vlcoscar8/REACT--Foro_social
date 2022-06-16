@@ -20,7 +20,7 @@
         justify-content: space-between;
         width: 90vw;
         max-width: 130rem;
-        padding: 0.5rem 4rem;
+        padding: 0.5rem 2rem;
         gap: 2rem;
         top: 4rem;
         height: 8rem;
@@ -32,30 +32,46 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         border: 1px solid rgb(255, 220, 155);
 
+        @include desktop {
+            padding: 0.5rem 4rem;
+        }
+
         &--icon {
             color: orangered;
             font-size: 5rem;
         }
 
         p {
-            font-size: 2rem;
+            font-size: 1.6rem;
+
+            @include desktop {
+                font-size: 2rem;
+            }
         }
 
         &--buttons {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             align-items: center;
             justify-content: space-between;
 
+            @include desktop {
+                gap: 2rem;
+            }
+
             .btn {
-                padding: 1.3rem 5rem;
+                padding: 1.3rem 2rem;
                 font-size: 1.6rem;
                 border: none;
                 border-radius: 3rem;
-
                 color: white;
                 cursor: pointer;
                 transition: all 0.2s ease;
+
+                @include desktop {
+                    padding: 1.3rem 5rem;
+                    font-size: 1.6rem;
+                }
             }
 
             .logout {
@@ -63,15 +79,30 @@
                 color: black;
                 border: 1px solid black;
 
+                .icon {
+                    font-size: 2rem;
+                    color: rgb(0, 0, 0);
+                }
+
                 &:hover {
                     background-color: rgb(12, 12, 12);
                     transition: all 0.2s ease;
                     color: white;
+
+                    .icon {
+                        font-size: 2rem;
+                        color: rgb(252, 252, 252);
+                    }
                 }
             }
 
             .login {
                 background-color: orangered;
+
+                .icon {
+                    font-size: 2rem;
+                    color: rgb(255, 255, 255);
+                }
 
                 &:hover {
                     background-color: rgb(255, 99, 42);
