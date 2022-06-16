@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { environment } from "../../../../environment/environment";
+import shortid from "shortid";
 
 const AvatarList = ({ userData, userId, handleSetAvatar }) => {
     const [avatarList, setAvatarList] = useState();
@@ -40,6 +41,7 @@ const AvatarList = ({ userData, userId, handleSetAvatar }) => {
                                         alt="noob"
                                         id={el.id}
                                         onClick={avatarClick}
+                                        key={shortid.generate()}
                                     />
                                 ) : (
                                     <img
@@ -52,6 +54,7 @@ const AvatarList = ({ userData, userId, handleSetAvatar }) => {
                                         alt="default-avatar"
                                         id={el.id}
                                         onClick={avatarClick}
+                                        key={shortid.generate()}
                                     />
                                 )
                             )}
@@ -73,6 +76,7 @@ const AvatarList = ({ userData, userId, handleSetAvatar }) => {
                                         alt="amateur"
                                         id={el.id}
                                         onClick={avatarClick}
+                                        key={shortid.generate()}
                                     />
                                 ) : (
                                     <img
@@ -85,6 +89,7 @@ const AvatarList = ({ userData, userId, handleSetAvatar }) => {
                                         alt="default-avatar"
                                         id={el.id}
                                         onClick={avatarClick}
+                                        key={shortid.generate()}
                                     />
                                 )
                             )}
@@ -106,6 +111,7 @@ const AvatarList = ({ userData, userId, handleSetAvatar }) => {
                                         alt="pro"
                                         id={el.id}
                                         onClick={avatarClick}
+                                        key={shortid.generate()}
                                     />
                                 ) : (
                                     <img
@@ -118,6 +124,7 @@ const AvatarList = ({ userData, userId, handleSetAvatar }) => {
                                         alt="default-avatar"
                                         id={el.id}
                                         onClick={avatarClick}
+                                        key={shortid.generate()}
                                     />
                                 )
                             )}

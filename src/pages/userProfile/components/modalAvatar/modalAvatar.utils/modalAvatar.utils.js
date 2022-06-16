@@ -11,8 +11,6 @@ export const buyAvatarImage = async (
         coins: userUpdated.coins - avatarSelected.price,
     };
 
-    console.log(userLogged);
-
     const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },

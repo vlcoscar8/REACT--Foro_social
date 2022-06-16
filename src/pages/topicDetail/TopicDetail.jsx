@@ -10,6 +10,7 @@ import Comment from "./components/comment/Comment";
 import TopicHeader from "./components/topicHeader/TopicHeader";
 import ModalAddComment from "./components/modalAddComment/ModalAddComment";
 import Loading from "../../components/shared/loading/Loading";
+import shortid from "shortid";
 
 const TopicDetail = () => {
     const { id } = useParams();
@@ -80,7 +81,7 @@ const TopicDetail = () => {
                             <>
                                 <Comment
                                     comment={comment}
-                                    key={comment.id}
+                                    key={shortid.generate()}
                                     isComment={true}
                                     showModalFunction={showModalFunction}
                                 />
@@ -89,7 +90,7 @@ const TopicDetail = () => {
                                         return (
                                             <Comment
                                                 comment={reply}
-                                                key={reply}
+                                                key={shortid.generate()}
                                                 isComment={false}
                                             />
                                         );
