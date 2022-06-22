@@ -88,14 +88,14 @@ describe("Header with any user logged", () => {
         expect(queryByTestId("profile-button")).toBeFalsy();
     });
 
-    it("Logout button exits when the user is logged", () => {
+    it("Logout button NOT exits when any user is logged", () => {
         const { queryByTestId } = render(<Header />, {
             wrapper,
         });
         expect(queryByTestId("logout-button")).toBeFalsy();
     });
 
-    it("Logout button exits when the user is logged", () => {
+    it("Login button exits when any user is logged", () => {
         const { queryByTestId } = render(<Header />, {
             wrapper,
         });
