@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import ModalLogin from "../modalLogin/ModalLogin";
 import { AuthStateContext } from "../../../state/context/authStateContext";
 import {
-    faArrowRight,
     faRightFromBracket,
     faRightToBracket,
     faUser,
@@ -39,11 +38,16 @@ const Header = () => {
                         className="header__nav--icon"
                     />
                 </Link>
-                {userLogged.loggedIn && <p>Hi {userData.username} 😊</p>}
+                {userLogged.loggedIn && (
+                    <p data-testid="username-text">Hi {userData.username} 😊</p>
+                )}
                 <div className="header__nav--buttons">
                     {userLogged.loggedIn && (
                         <Link to={`/user/${userData.username}`}>
-                            <button className="btn login">
+                            <button
+                                className="btn login"
+                                data-testid="profile-button"
+                            >
                                 {widthWindow > 730 ? (
                                     "View Profile"
                                 ) : (
@@ -56,7 +60,11 @@ const Header = () => {
                         </Link>
                     )}
                     {!userLogged.loggedIn ? (
-                        <button onClick={showModal} className="btn login">
+                        <button
+                            onClick={showModal}
+                            className="btn login"
+                            data-testid="login-button"
+                        >
                             {widthWindow > 730 ? (
                                 "Login"
                             ) : (
@@ -67,7 +75,11 @@ const Header = () => {
                             )}
                         </button>
                     ) : (
-                        <button onClick={showModal} className="btn logout">
+                        <button
+                            onClick={showModal}
+                            className="btn logout"
+                            data-testid="logout-button"
+                        >
                             {widthWindow > 730 ? (
                                 "Logout"
                             ) : (

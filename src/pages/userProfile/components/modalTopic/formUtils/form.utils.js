@@ -5,7 +5,6 @@ export const convertFormData = (values) => {
 
     Object.entries(values).forEach((el) => {
         formData.append(el[0], el[1]);
-        console.log(el[0], el[1]);
     });
 
     return formData;

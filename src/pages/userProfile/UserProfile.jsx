@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ModalAvatar from "./components/modalAvatar/ModalAvatar";
 import UserHeader from "./components/userHeader/UserHeader";
