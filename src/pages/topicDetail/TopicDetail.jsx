@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -20,7 +20,6 @@ const TopicDetail = () => {
     const [show, setShow] = useState(false);
     const [filteredComments, setFilteredComments] = useState();
     const [page, setPage] = useState(0);
-
     // Redux state modifications
     const { topicDetail, done } = useTopicDetail(id);
     const { topicUser, topicComments } = useSelector((state) => state.topic);

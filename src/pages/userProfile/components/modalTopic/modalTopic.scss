@@ -1,4 +1,4 @@
-.modal-comment {
+.modal-topic {
     position: fixed;
     width: 85%;
     max-width: 80rem;
@@ -11,7 +11,7 @@
     transition: all 0.5s ease;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     background-color: rgb(242, 242, 242);
 
     &__overlay {
@@ -80,6 +80,7 @@
                 cursor: pointer;
                 margin-top: -2rem;
                 width: 50%;
+                justify-content: center;
 
                 &:hover {
                     background-color: rgb(232, 232, 232);

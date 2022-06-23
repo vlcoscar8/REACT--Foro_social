@@ -52,7 +52,6 @@ describe("home", () => {
                 </Router>
             </Provider>
         );
-
         const button = queryByTestId("sort-button");
         expect(button.innerHTML).toBe("Sort");
     });

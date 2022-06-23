@@ -15,7 +15,7 @@ const UserProfile = () => {
     const [modal, setModal] = useState(false);
     const [modalTopic, setModalTopic] = useState(false);
     const [userDetail, setUserDetail] = useState();
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
     // Update the user detail when the modal avatar or modal topic is showed or hide
     useEffect(() => {
@@ -51,7 +51,10 @@ const UserProfile = () => {
     return (
         <>
             {userDetail ? (
-                <section className="user-profile">
+                <section
+                    className="user-profile"
+                    data-testid="user-profile-section"
+                >
                     <UserHeader
                         userDetail={userDetail}
                         username={username}

@@ -40,7 +40,7 @@
         }
 
         &--btn {
-            @include button;
+            @include button(60%, 1rem);
         }
 
         .disabled {

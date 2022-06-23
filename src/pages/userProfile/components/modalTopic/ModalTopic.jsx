@@ -35,6 +35,7 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
             userLogged.token
         );
         result && setResult(true);
+        showModalTopic(false);
     };
 
     const handleChangeInputFile = (event, formik) => {
@@ -48,7 +49,7 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
             {done && (
                 <section
                     className={
-                        modalTopic ? "modal-comment" : "modal-comment no-active"
+                        modalTopic ? "modal-topic" : "modal-topic no-active"
                     }
                 >
                     <button onClick={handleShowModal} className="btn__close">
@@ -58,8 +59,8 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
                         {(formik) => {
                             return (
                                 <>
-                                    <Form className="modal-comment__form">
-                                        <label className="modal-comment__form--label">
+                                    <Form className="modal-topic__form">
+                                        <label className="modal-topic__form--label">
                                             Title{" "}
                                             <Field
                                                 id="title"
@@ -70,7 +71,7 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
                                             />
                                         </label>
 
-                                        <label className="modal-comment__form--label">
+                                        <label className="modal-topic__form--label">
                                             Choose the family of your topic:
                                             <Field
                                                 as="select"
@@ -92,7 +93,7 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
                                                 ))}
                                             </Field>
                                         </label>
-                                        <div className="modal-comment__form--label">
+                                        <div className="modal-topic__form--label">
                                             <p>Wallpaper</p>
                                             <label className="label-file">
                                                 {!file ? (
@@ -132,8 +133,8 @@ const ModalTopic = ({ showModalTopic, modalTopic }) => {
             <div
                 className={
                     modalTopic
-                        ? "modal-comment__overlay"
-                        : "modal-comment__overlay no-active"
+                        ? "modal-topic__overlay"
+                        : "modal-topic__overlay no-active"
                 }
             ></div>
         </>
