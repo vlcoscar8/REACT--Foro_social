@@ -41,7 +41,7 @@ const TopicDetail = () => {
         setTimeout(() => {
             setShow(true);
         }, 2000);
-    }, [dispatch, done]);
+    }, [dispatch, done, topicDetail]);
 
     // Pagination
     useEffect(() => {

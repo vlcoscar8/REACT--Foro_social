@@ -5,14 +5,9 @@ import BtnFollow from "../../../../components/shared/button-follow/BtnFollow";
 import BtnComment from "../../../../components/shared/button-comment/BtnComment";
 import { Link } from "react-router-dom";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
-import { useSelector } from "react-redux";
 
 const TopicHeader = ({ topic, owner, showModalFunction }) => {
     const { userLogged, userData } = useContext(AuthStateContext);
-
-    const { topicDetail } = useSelector((state) => state.topic);
-
-    console.log(topicDetail);
 
     return (
         <>
@@ -45,9 +40,7 @@ const TopicHeader = ({ topic, owner, showModalFunction }) => {
                     </div>
                     <div className="icons">
                         <FontAwesomeIcon icon={faUserPlus} className="icon" />
-                        <p className="counter">
-                            {topicDetail[0].followers.length}
-                        </p>
+                        <p className="counter">{topic.followers.length}</p>
                     </div>
                 </div>
 
