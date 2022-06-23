@@ -29,14 +29,14 @@
                 content: "";
                 width: 30rem;
                 height: 1px;
-                background-color: orangered;
+                background-color: $primaryColor;
             }
 
             &::before {
                 content: "";
                 width: 30rem;
                 height: 1px;
-                background-color: orangered;
+                background-color: $primaryColor;
             }
         }
 

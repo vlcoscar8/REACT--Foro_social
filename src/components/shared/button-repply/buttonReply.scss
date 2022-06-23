@@ -1,17 +1,17 @@
 .reply-btn {
-    background-color: orangered;
+    background-color: $primaryColor;
     align-self: flex-end;
     padding: 1rem 5rem;
     font-size: 1.7rem;
     color: white;
     border-radius: 4rem;
-    border: 1px solid rgb(189, 50, 0);
+    border: 1px solid $primaryColorDark;
     cursor: pointer;
     position: absolute;
     bottom: 2rem;
 
     &:hover {
-        background-color: rgb(255, 100, 44);
+        background-color: $primaryColorLight;
         transition: all 0.3s ease;
     }
 }

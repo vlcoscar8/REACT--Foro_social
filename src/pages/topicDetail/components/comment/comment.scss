@@ -9,7 +9,7 @@
     justify-content: center;
     border-radius: 3rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border: 1px solid rgb(255, 170, 66);
+    border: 1px solid $borderColor;
     background-color: white;
 
     &__user {
@@ -93,7 +93,7 @@
     justify-content: center;
     border-radius: 3rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border: 1px solid rgb(255, 170, 66);
+    border: 1px solid $borderColor;
     position: relative;
     background-color: white;
 

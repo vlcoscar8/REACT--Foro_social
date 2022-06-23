@@ -50,13 +50,13 @@
             font-size: 1.4rem;
             border: none;
             border-radius: 2rem;
-            background-color: orangered;
+            background-color: $primaryColor;
             color: white;
             cursor: pointer;
             transition: all 0.2s ease;
 
             &:hover {
-                background-color: rgb(255, 99, 42);
+                background-color: $primaryColorLight;
                 transition: all 0.2s ease;
             }
         }

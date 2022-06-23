@@ -50,38 +50,21 @@
 
             &:hover {
                 transform: scale(1.1);
-                color: orangered;
+                color: $primaryColor;
                 transition: all 0.2s ease;
             }
         }
     }
 
     &__overlay {
-        z-index: 1000;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.297);
-        backdrop-filter: blur(5px);
-        opacity: 0.9;
-        opacity: 1;
-        transition: all 0.4s ease-in;
+        @include overlay;
     }
 }
 
 .no-active {
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s ease-in;
-    z-index: -10;
-    display: none;
+    @include noActiveCard;
 }
 
 .active {
-    opacity: 1;
-    visibility: visible;
-    transition: all 0.2s ease-in;
-    display: block;
+    @include activeCard;
 }

@@ -1,6 +1,8 @@
 // Settings
 @import "./styles/settings.scss";
+@import "./styles/variables.scss";
 @import "./styles/responsive.scss";
+@import "./styles/mixins.scss";
 
 // Pages
 @import "./pages/home/home.scss";
