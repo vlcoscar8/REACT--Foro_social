@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Header from "./Header";
 import { AuthStateContext } from "../../../state/context/authStateContext";
 import { BrowserRouter as Router } from "react-router-dom";
