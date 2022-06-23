@@ -1,8 +1,7 @@
 import { AuthStateContext } from "../../../state/context/authStateContext";
 import UserForm from "./UserForm";
 import "@testing-library/jest-dom/extend-expect";
-import { fireEvent, render } from "@testing-library/react";
-import { useContext } from "react";
+import { render } from "@testing-library/react";
 
 describe("Show login form", () => {
     const showRegister = false;

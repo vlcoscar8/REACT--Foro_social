@@ -61,7 +61,11 @@ const Home = () => {
                                 className="icon"
                             />
                         </label>
-                        <button onClick={handleSort} className="btn">
+                        <button
+                            onClick={handleSort}
+                            className="btn"
+                            data-testid="sort-button"
+                        >
                             Sort
                         </button>
                         <button

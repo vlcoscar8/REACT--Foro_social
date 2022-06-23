@@ -18,7 +18,9 @@ const FamilyTopicCard = ({ family }) => {
             </Link>
             <Link to={`/family/${family.id}`} className="family-card__info">
                 <div className="family-card__info--text">
-                    <h2 className="title">{family.title}</h2>
+                    <h2 className="title" data-testid="family-name">
+                        {family.title}
+                    </h2>
                     <div className="topics-container">
                         <FontAwesomeIcon
                             icon={faBookOpen}
