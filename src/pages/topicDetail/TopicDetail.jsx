@@ -20,6 +20,7 @@ const TopicDetail = () => {
     const [show, setShow] = useState(false);
     const [filteredComments, setFilteredComments] = useState();
     const [page, setPage] = useState(0);
+
     // Redux state modifications
     const { topicDetail, done } = useTopicDetail(id);
     const { topicUser, topicComments } = useSelector((state) => state.topic);
@@ -39,8 +40,8 @@ const TopicDetail = () => {
         done && dispatch(getTopicComments(topicDetail));
         setTimeout(() => {
             setShow(true);
-        }, 1000);
-    }, [dispatch, done, topicDetail]);
+        }, 2000);
+    }, [dispatch, done]);
 
     // Pagination
     useEffect(() => {
@@ -75,28 +76,32 @@ const TopicDetail = () => {
                         owner={topicUser}
                         showModalFunction={showModalFunction}
                     />
-                    {filteredComments.map((comment) => {
-                        return (
-                            <>
-                                <Comment
-                                    comment={comment}
-                                    key={shortid.generate()}
-                                    isComment={true}
-                                    showModalFunction={showModalFunction}
-                                />
-                                {comment.replies.length > 0 &&
-                                    comment.replies.map((reply) => {
-                                        return (
-                                            <Comment
-                                                comment={reply}
-                                                key={shortid.generate()}
-                                                isComment={false}
-                                            />
-                                        );
-                                    })}
-                            </>
-                        );
-                    })}
+                    {filteredComments ? (
+                        filteredComments.map((comment) => {
+                            return (
+                                <>
+                                    <Comment
+                                        comment={comment}
+                                        key={shortid.generate()}
+                                        isComment={true}
+                                        showModalFunction={showModalFunction}
+                                    />
+                                    {comment.replies.length > 0 &&
+                                        comment.replies.map((reply) => {
+                                            return (
+                                                <Comment
+                                                    comment={reply}
+                                                    key={shortid.generate()}
+                                                    isComment={false}
+                                                />
+                                            );
+                                        })}
+                                </>
+                            );
+                        })
+                    ) : (
+                        <Loading />
+                    )}
                     <div className="topic__pagination">
                         {page > 0 && <button onClick={prevPage}>Prev</button>}
                         <p>{page + 1}</p>

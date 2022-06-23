@@ -10,8 +10,8 @@ const BtnFollow = ({ userId, page, topic, userData }) => {
     const [clicked, setClicked] = useState();
 
     useEffect(() => {
-        dispatch(getTopicDetail(topic.id));
-        setUserFetched();
+        clicked && dispatch(getTopicDetail(topic.id));
+        clicked && setUserFetched();
     }, [clicked]);
 
     // Update user data redux state
@@ -64,7 +64,7 @@ const BtnFollow = ({ userId, page, topic, userData }) => {
     return (
         <button
             className={page === "card" ? "follow-card-btn" : "follow-topic-btn"}
-            onClick={handleButtonFollow}
+            onClick={() => handleButtonFollow()}
         >
             {userUpdated.topicsFollowing.includes(topic.id)
                 ? "Unfollow"

@@ -77,7 +77,7 @@ const Comment = ({ comment, isComment, showModalFunction }) => {
                     </div>
                 </figure>
             ) : (
-                <Loading />
+                ""
             )}
         </>
     );

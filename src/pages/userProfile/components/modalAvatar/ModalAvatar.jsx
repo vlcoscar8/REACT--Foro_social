@@ -2,7 +2,6 @@ import { faGem, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import AvatarList from "../avatarList/AvatarList";
-import { environment } from "../../../../environment/environment";
 import { AuthStateContext } from "../../../../state/context/authStateContext";
 import { serviceGetUserDetail } from "../../../../state/services/user.services";
 import {
@@ -60,13 +59,15 @@ const ModalAvatar = ({ userDetail, showModal, modal }) => {
     const handleBuyButton = async () => {
         setClicked(false);
 
-        const data =
-            avatarSelected &&
-            !avatarSelected.users.includes(userLogged.userId) &&
-            (await buyAvatarImage(avatarSelected, userUpdated, userLogged));
+        userUpdated.coins < avatarSelected.price &&
+        !avatarSelected.users.includes(userLogged.userId)
+            ? setError("You need more money")
+            : await buyAvatarImage(avatarSelected, userUpdated, userLogged);
 
-        !data.username && setError("You need more money");
         setClicked(true);
+        setTimeout(() => {
+            setError(false);
+        }, 3000);
     };
 
     return (
