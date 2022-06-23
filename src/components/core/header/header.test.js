@@ -3,7 +3,6 @@ import Header from "./Header";
 import { AuthStateContext } from "../../../state/context/authStateContext";
 import { BrowserRouter as Router } from "react-router-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { createMemoryHistory } from "history";
 
 describe("Header with the user logged", () => {
     const userLogged = {

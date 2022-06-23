@@ -60,7 +60,10 @@ const UserForm = ({ handleShowModal, showRegisterForm, showRegister }) => {
             }
         >
             {showRegister ? (
-                <label className="login-form__label">
+                <label
+                    className="login-form__label"
+                    data-testid="username-label"
+                >
                     <p className="login-form__label--text">Username</p>
                     <input
                         type="text"
