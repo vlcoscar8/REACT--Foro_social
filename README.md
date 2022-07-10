@@ -1,6 +1,6 @@
 # A React Foro
 
-Deployed on Netlify: https://react-foro.netlify.app/home
+Deployed on Netlify: https://react-foro.netlify.app
 
 The project is a foro web developer with React, it has a coins system rewards when the users send messages and create topics, later the user can swap the coins for nw avatar images.
 
